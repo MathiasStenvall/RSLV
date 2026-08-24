@@ -1,4 +1,4 @@
-package app.config;
+package config.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

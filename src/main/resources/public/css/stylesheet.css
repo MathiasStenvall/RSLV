@@ -1,0 +1,117 @@
+.header-display {
+    background: black;
+}
+
+.brand-logo {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+
+.header-columns {
+    display: flex;
+    flex-direction: column;
+    column-width: 33·;
+}
+
+.header-menu {
+    display: flex;
+    position: absolute;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    gap: 2rem;
+    justify-self: end;
+    color: whitesmoke;
+    font-size: 1.5rem;
+}
+
+a, a:visited {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    color: lawngreen;
+}
+
+.header-random-quote {
+    color: whitesmoke;
+    font-size: 1.5rem;
+    justify-self: center;
+}
+
+.header-fade {
+    height: 2rem;
+    background: linear-gradient(to bottom, black, darkgreen);
+}
+
+.card-menu {
+    background: darkgreen;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    container-type: inline-size;
+    margin: 1rem;
+    position: relative;
+    width: clamp(20px, 40vh, 40vh);
+    aspect-ratio: 1 /1;
+    border: solid black 1px;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: scale(104%);
+    cursor: pointer;
+}
+
+.card-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    width: 50%;
+    font-size: 25cqw;
+}
+
+#train-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/train.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#learn-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/learn.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#progress-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/progress.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#calories-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/calories.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#macros-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/macros.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#lingo-card {
+    background-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.7) 70%), url("../images/lingo.png");
+    background-size: cover;
+    background-position: center;
+}

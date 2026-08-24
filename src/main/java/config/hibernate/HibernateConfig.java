@@ -1,6 +1,6 @@
-package app.config;
+package config.hibernate;
 
-import app.utils.Utils;
+import utils.Utils;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Properties;
