@@ -8,12 +8,6 @@
     height: fit-content;
 }
 
-.header-columns {
-    display: flex;
-    flex-direction: column;
-    column-width: 33·;
-}
-
 .header-menu {
     display: flex;
     position: absolute;
