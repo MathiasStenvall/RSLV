@@ -30,7 +30,7 @@ public final class UserTestPopulator {
                     .height(151).currentWeight(56.1).signupDate(testDate.plusDays(5)).build();
 
             try {
-                em.createNativeQuery("TRUNCATE TABLE user RESTART IDENTITY CASCADE").executeUpdate();
+                em.createNativeQuery("TRUNCATE TABLE users RESTART IDENTITY CASCADE").executeUpdate();
                 em.persist(u1);
                 em.persist(u2);
                 em.persist(u3);

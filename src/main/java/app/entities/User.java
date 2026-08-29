@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 @Getter
 @NoArgsConstructor
 @Builder
@@ -16,7 +18,7 @@ import java.time.LocalDate;
 public class User {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -37,4 +39,16 @@ public class User {
 
     private LocalDate signupDate;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && age == user.age && phoneNumber == user.phoneNumber && height == user.height && Double.compare(currentWeight, user.currentWeight) == 0 && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(sex, user.sex) && Objects.equals(signupDate, user.signupDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, email, password, phoneNumber, sex, height, currentWeight, signupDate);
+    }
 }

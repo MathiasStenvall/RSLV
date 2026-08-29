@@ -73,6 +73,7 @@ public class UserDAO implements IDAO<User, Integer> {
             } catch (Exception e) {
                 em.getTransaction().isActive();
                 em.getTransaction().rollback();
+                throw e;
             }
         }
         return false;

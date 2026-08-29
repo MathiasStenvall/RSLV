@@ -5,29 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68c65ee1-52c0-4de9-b18c-b35421ff17ca" name="Changes" comment="Removed unused class in CSS file">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/DAO/IDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/DAO/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/Config/HibernateTestConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/UserDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/EntityRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/EntityRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateBaseProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateBaseProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateEmfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateEmfBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Quote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/exceptions/ApiException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/learn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/learn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/progress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/train.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/train.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +56,13 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.UserDAOTest.delete.executor": "Run",
+    "JUnit.UserDAOTest.executor": "Run",
+    "JUnit.UserDAOTest.findById.executor": "Run",
+    "JUnit.UserDAOTest.getAll.executor": "Run",
+    "JUnit.UserDAOTest.save (1).executor": "Run",
     "JUnit.UserDAOTest.save.executor": "Run",
+    "JUnit.UserDAOTest.update.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -107,7 +95,7 @@
       <recent name="DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDAOTest.save">
+  <component name="RunManager" selected="JUnit.UserDAOTest.delete">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="RSLV" />
@@ -115,8 +103,56 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDAOTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RSLV" />
+    <configuration name="UserDAOTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="delphi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.DAO" />
+      <option name="MAIN_CLASS_NAME" value="app.DAO.UserDAOTest" />
+      <option name="METHOD_NAME" value="delete" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAOTest.findById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="delphi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.DAO" />
+      <option name="MAIN_CLASS_NAME" value="app.DAO.UserDAOTest" />
+      <option name="METHOD_NAME" value="findById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAOTest.getAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="delphi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.DAO" />
+      <option name="MAIN_CLASS_NAME" value="app.DAO.UserDAOTest" />
+      <option name="METHOD_NAME" value="getAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAOTest.save (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="delphi" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.DAO.*" />
@@ -131,13 +167,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserDAOTest.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="delphi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.DAO" />
+      <option name="MAIN_CLASS_NAME" value="app.DAO.UserDAOTest" />
+      <option name="METHOD_NAME" value="update" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.UserDAOTest.save" />
+      <item itemvalue="JUnit.UserDAOTest.delete" />
+      <item itemvalue="JUnit.UserDAOTest.findById" />
+      <item itemvalue="JUnit.UserDAOTest.getAll" />
+      <item itemvalue="JUnit.UserDAOTest.save (1)" />
+      <item itemvalue="JUnit.UserDAOTest.update" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserDAOTest.save" />
+        <item itemvalue="JUnit.UserDAOTest.delete" />
+        <item itemvalue="JUnit.UserDAOTest.update" />
+        <item itemvalue="JUnit.UserDAOTest.getAll" />
+        <item itemvalue="JUnit.UserDAOTest.save (1)" />
+        <item itemvalue="JUnit.UserDAOTest.findById" />
       </list>
     </recent_temporary>
   </component>
