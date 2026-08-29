@@ -4,24 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68c65ee1-52c0-4de9-b18c-b35421ff17ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Quote.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/css/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/learn.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/progress.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/train.html" afterDir="false" />
+    <list default="true" id="68c65ee1-52c0-4de9-b18c-b35421ff17ca" name="Changes" comment="Removed unused class in CSS file">
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/DAO/IDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/DAO/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/Config/HibernateTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/EntityRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/hibernate/EntityRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/HibernateBaseProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateBaseProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/HibernateEmfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateEmfBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/exceptions/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exceptions/ApiException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/EntityRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/EntityRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateBaseProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateBaseProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/hibernate/HibernateEmfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/hibernate/HibernateEmfBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Quote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/exceptions/ApiException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/learn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/learn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/progress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/train.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/train.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +39,8 @@
       <list>
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -52,6 +60,9 @@
     &quot;accountId&quot;: &quot;bbad76d5-a044-4ca3-80f9-c2473459fc8e&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -59,25 +70,77 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.UserDAOTest.save.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\msten\OneDrive\Datamatiker\RSLV\RSLV\src\main\resources" />
+      <recent name="C:\Users\msten\OneDrive\Datamatiker\RSLV\RSLV\src" />
+      <recent name="C:\Users\msten\OneDrive\Datamatiker\RSLV\RSLV\src\main" />
+      <recent name="C:\Users\msten\OneDrive\Datamatiker\RSLV\RSLV\src\main\java\app" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="DAO" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserDAOTest.save">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="RSLV" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAOTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RSLV" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.DAO" />
+      <option name="MAIN_CLASS_NAME" value="app.DAO.UserDAOTest" />
+      <option name="METHOD_NAME" value="save" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.UserDAOTest.save" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserDAOTest.save" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -104,11 +167,38 @@
       <workItem from="1787489526118" duration="9818000" />
       <workItem from="1787500506168" duration="919000" />
       <workItem from="1787506926244" duration="54000" />
-      <workItem from="1787573410558" duration="13000" />
+      <workItem from="1787573410558" duration="352000" />
+      <workItem from="1787573815280" duration="3000" />
+      <workItem from="1787851615746" duration="557000" />
+      <workItem from="1787871753584" duration="2000" />
+      <workItem from="1787923450098" duration="19000" />
+      <workItem from="1787995975761" duration="4402000" />
     </task>
+    <task id="LOCAL-00001" summary="Set up the project with Hibernate.&#10;&#10;Frontend:&#10;- created initial html elements with starting css&#10;&#10;Backend:&#10;- Created user and Quote entities.&#10;- Created UserDAO with basic JPA CRUD.">
+      <option name="closed" value="true" />
+      <created>1787573513493</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1787573513493</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Removed unused class in CSS file">
+      <option name="closed" value="true" />
+      <created>1787573731743</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1787573731743</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Set up the project with Hibernate.&#10;&#10;Frontend:&#10;- created initial html elements with starting css&#10;&#10;Backend:&#10;- Created user and Quote entities.&#10;- Created UserDAO with basic JPA CRUD." />
+    <MESSAGE value="Removed unused class in CSS file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused class in CSS file" />
   </component>
 </project>

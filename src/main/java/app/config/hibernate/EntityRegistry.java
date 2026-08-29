@@ -1,7 +1,7 @@
-package config.hibernate;
+package app.config.hibernate;
 
-import entities.Quote;
-import entities.User;
+import app.entities.Quote;
+import app.entities.User;
 import org.hibernate.cfg.Configuration;
 
 final class EntityRegistry {

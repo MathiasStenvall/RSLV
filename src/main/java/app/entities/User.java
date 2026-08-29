@@ -1,13 +1,17 @@
-package entities;
+package app.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class User {
 
@@ -27,18 +31,10 @@ public class User {
 
     private String sex;
 
-    private double height;
+    private int height;
 
     private double currentWeight;
 
-    public User(String name, int age, String email, String password, int phoneNumber, String sex, double height, double currentWeight) {
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.sex = sex;
-        this.height = height;
-        this.currentWeight = currentWeight;
-    }
+    private LocalDate signupDate;
+
 }
