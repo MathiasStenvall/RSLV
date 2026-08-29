@@ -1,6 +1,5 @@
 package app.DAO;
 
-import app.config.hibernate.HibernateConfig;
 import app.entities.User;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
