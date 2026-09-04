@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68c65ee1-52c0-4de9-b18c-b35421ff17ca" name="Changes" comment="- Created empty classes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/entities/WorkoutExercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/ExerciseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/ExerciseData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Split.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Split.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Workout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/DAO/UserDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/testutils/UserTestPopulator.java" afterDir="false" />
-    </list>
+    <list default="true" id="68c65ee1-52c0-4de9-b18c-b35421ff17ca" name="Changes" comment="- created remaining entities&#10;- created relations between entities" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,7 +230,7 @@
       <workItem from="1788161334371" duration="41000" />
       <workItem from="1788183478004" duration="2677000" />
       <workItem from="1788276872940" duration="27000" />
-      <workItem from="1788528136147" duration="8147000" />
+      <workItem from="1788528136147" duration="8235000" />
     </task>
     <task id="LOCAL-00001" summary="Set up the project with Hibernate.&#10;&#10;Frontend:&#10;- created initial html elements with starting css&#10;&#10;Backend:&#10;- Created user and Quote entities.&#10;- Created UserDAO with basic JPA CRUD.">
       <option name="closed" value="true" />
@@ -267,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788184971144</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- created remaining entities&#10;- created relations between entities">
+      <option name="closed" value="true" />
+      <created>1788536468027</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1788536468027</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +274,7 @@
     <MESSAGE value="Set up the project with Hibernate.&#10;&#10;Frontend:&#10;- created initial html elements with starting css&#10;&#10;Backend:&#10;- Created user and Quote entities.&#10;- Created UserDAO with basic JPA CRUD." />
     <MESSAGE value="Removed unused class in CSS file" />
     <MESSAGE value="- Created empty classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Created empty classes" />
+    <MESSAGE value="- created remaining entities&#10;- created relations between entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="- created remaining entities&#10;- created relations between entities" />
   </component>
 </project>
