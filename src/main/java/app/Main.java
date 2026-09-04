@@ -17,7 +17,7 @@ public class Main {
         IDAO<User, Integer> userDAO = new UserDAO(emf);
 
         User u1 = User.builder().name("christian").age(23).email("ckenter@gmail.com")
-                .password("1234").phoneNumber(12345678).sex("Male")
+                .password("1234").phoneNumber("12345678").sex("Male")
                 .height(171).currentWeight(71.4).signupDate(LocalDate.now()).build();
 
         System.out.println(u1);

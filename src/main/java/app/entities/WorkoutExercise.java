@@ -11,19 +11,25 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Split {
+public class WorkoutExercise {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
 
-    @OneToMany (mappedBy = "split")
+    @ManyToMany (mappedBy = "exercises")
     private List<Workout> workouts;
+
+    @ManyToOne
+    @JoinColumn (name = "exercise_id")
+    private Exercise exercise;
+
+    @OneToOne
+    @JoinColumn (name = "exercise_data_id")
+    private ExerciseData exerciseData;
 
 }

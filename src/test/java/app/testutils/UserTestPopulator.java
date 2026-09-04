@@ -20,13 +20,13 @@ public final class UserTestPopulator {
             LocalDate testDate = LocalDate.of(2026, 8, 29);
 
             User u1 = User.builder().name("christian").age(23).email("ckenter@gmail.com")
-                    .password("1234").phoneNumber(12345678).sex("Male")
+                    .password("1234").phoneNumber("12345678").sex("Male")
                     .height(171).currentWeight(71.4).signupDate(testDate).build();
             User u2 = User.builder().name("nicoline").age(25).email("nico@gmail.com")
-                    .password("1234").phoneNumber(12345678).sex("Female")
+                    .password("1234").phoneNumber("12345678").sex("Female")
                     .height(168).currentWeight(64.7).signupDate(testDate.plusDays(2)).build();
             User u3 = User.builder().name("rosa").age(23).email("rosa@gmail.com")
-                    .password("1234").phoneNumber(12345678).sex("Female")
+                    .password("1234").phoneNumber("12345678").sex("Female")
                     .height(151).currentWeight(56.1).signupDate(testDate.plusDays(5)).build();
 
             try {
