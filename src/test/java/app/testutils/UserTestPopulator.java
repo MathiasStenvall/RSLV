@@ -31,7 +31,7 @@ public final class UserTestPopulator {
             User u3 = User.builder().name("rosa").age(23).email("rosa@gmail.com")
                     .password("1234").phoneNumber("12345678").sex("Female")
                     .height(151).currentWeight(56.1).signupDate(testDate.plusDays(5))
-                    .workoutExercises(List.of()).splits(List.of()).build();;
+                    .workoutExercises(List.of()).splits(List.of()).build();
 
             try {
                 em.createNativeQuery("TRUNCATE TABLE users RESTART IDENTITY CASCADE").executeUpdate();
