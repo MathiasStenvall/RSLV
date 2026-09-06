@@ -66,13 +66,13 @@ public class LLMAPI {
 
         HttpResponse<String> responseQuiz;
 
-        try (HttpClient clientQuiz = HttpClient.newHttpClient()) {
+        HttpClient clientQuiz = HttpClient.newHttpClient();
 
-            responseQuiz = clientQuiz.send(
-                    requestQuiz,
-                    HttpResponse.BodyHandlers.ofString()
-            );
-        }
+        responseQuiz = clientQuiz.send(
+                requestQuiz,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
 
         GeminiResponse geminiQuiz = mapper.readValue(responseQuiz.body(), GeminiResponse.class);
 
@@ -82,11 +82,10 @@ public class LLMAPI {
                 mapper.readValue(quizJson, GeminiResponse.Candidate.Content.Part.QuizQuestion.class);
 
 
-
         System.out.println(quizQuestion.getQuestion());
-        for (String s: quizQuestion.getAnswers()){
+        for (String s : quizQuestion.getAnswers()) {
             System.out.println("\t" + s);
         }
-        System.out.println("Correct answer: " + (1+quizQuestion.getCorrectAnswer()));
+        System.out.println("Correct answer: " + (1 + quizQuestion.getCorrectAnswer()));
     }
 }
