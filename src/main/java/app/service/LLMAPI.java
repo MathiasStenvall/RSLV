@@ -83,8 +83,9 @@ public class LLMAPI {
 
 
         System.out.println(quizQuestion.getQuestion());
+        int counter = 1;
         for (String s : quizQuestion.getAnswers()) {
-            System.out.println("\t" + s);
+            System.out.println("\t" + counter++ + ". " + s);
         }
         System.out.println("Correct answer: " + (1 + quizQuestion.getCorrectAnswer()));
     }
