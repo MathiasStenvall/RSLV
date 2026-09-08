@@ -36,7 +36,11 @@ public class LLMAPI {
         Map<String, Object> quiz = Map.of("contents", List.of(
                         Map.of("parts", List.of(
                                         Map.of("text", """
-                                                Generate one multiple-choice question about a fitness topic.
+                                                Generate one multiple-choice question about a one of these fitness topics:
+                                                rir, failure, superset, dropset, set, rep, volume,
+                                                progressive overload, compound, isolation, PR/PB, ROM, volume eating, fasting,
+                                                bulk, cut, neat, deload, recovery, hipertrophy, spot, eccentric, concentric,
+                                                pump, lean.
                                                 
                                                 The question must have exactly four possible answers.
                                                 
