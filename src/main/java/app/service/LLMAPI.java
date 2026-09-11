@@ -11,6 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class LLMAPI {
 
@@ -33,26 +34,29 @@ public class LLMAPI {
                         + model
                         + ":generateContent";
 
+        List<String> lingo = List.of("rir", "failure", "superset", "dropset", "set", "rep", "volume",
+                "progressive overload", "compound", "isolation", "PR/PB", "ROM", "volume eating", "fasting",
+                "bulk", "cut", "neat", "deload", "recovery", "hypertrophy", "spot", "eccentric", "concentric",
+                "pump", "lean");
+
+        Random random = new Random();
+
+        String topic = lingo.get(random.nextInt(lingo.size()));
+        int answerSlot = random.nextInt(4)+1;
+
+        String prompt = "Generate one multiple-choice question about the gym topic: " + topic +
+                "The question must have exactly four possible answers." +
+                "The correct answer will be located at number: " + answerSlot +
+                "Return only JSON with these properties:" +
+                "question" +
+                "answers" +
+                "correctAnswer" +
+                "correctAnswer must be the zero-based index of the correct answer. " +
+                "Do not include Markdown or explanations.";
+
         Map<String, Object> quiz = Map.of("contents", List.of(
                         Map.of("parts", List.of(
-                                        Map.of("text", """
-                                                Generate one multiple-choice question about a one of these fitness topics:
-                                                rir, failure, superset, dropset, set, rep, volume,
-                                                progressive overload, compound, isolation, PR/PB, ROM, volume eating, fasting,
-                                                bulk, cut, neat, deload, recovery, hipertrophy, spot, eccentric, concentric,
-                                                pump, lean.
-                                                
-                                                The question must have exactly four possible answers.
-                                                
-                                                Return only JSON with these properties:
-                                                
-                                                question
-                                                answers
-                                                correctAnswer
-                                                
-                                                correctAnswer must be the zero-based index of the correct answer.
-                                                
-                                                Do not include Markdown or explanations.""")
+                                        Map.of("text", prompt)
                                 )
                         )
                 ),
