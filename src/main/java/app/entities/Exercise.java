@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,17 +19,17 @@ public class Exercise {
     private String name;
     private String gifUrl;
 
-    @ElementCollection
-    private List<String> bodyParts;
+    @ManyToMany
+    private Set<ExerciseBodyPart> bodyParts;
 
-    @ElementCollection
-    private List<String> targetMuscles;
+    @ManyToMany
+    private Set<ExerciseTargetMuscle> targetMuscles;
 
-    @ElementCollection
-    private List<String> secondaryMuscles;
+    @ManyToMany
+    private Set<ExerciseSecondaryMuscle> secondaryMuscles;
 
-    @ElementCollection
-    private List<String> equipments;
+    @ManyToMany
+    private Set<ExerciseEquipment> equipments;
 
     @ElementCollection
     private List<String> instructions;
