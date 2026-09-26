@@ -37,7 +37,7 @@ public class LLMAPI {
         List<String> lingo = List.of("rir", "failure", "superset", "dropset", "set", "rep", "volume",
                 "progressive overload", "compound", "isolation", "PR/PB", "ROM", "volume eating", "fasting",
                 "bulk", "cut", "neat", "deload", "recovery", "hypertrophy", "spot", "eccentric", "concentric",
-                "pump", "lean");
+                "pump", "lean", "plateau");
 
         Random random = new Random();
 
