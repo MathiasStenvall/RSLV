@@ -21,7 +21,7 @@ public class Main {
 
     private static final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         LLMAPI llmApi = new LLMAPI();
         // llmApi.askLlm();
