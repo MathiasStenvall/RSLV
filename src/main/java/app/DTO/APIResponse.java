@@ -1,6 +1,5 @@
 package app.DTO;
 
-import app.entities.Exercise;
 import app.entities.Meta;
 import lombok.Data;
 
