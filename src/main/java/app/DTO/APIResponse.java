@@ -11,6 +11,6 @@ public class APIResponse {
 
     private boolean success;
     private Meta meta;
-    private List<Exercise> data;
+    private List<ExerciseDTO> data;
 
 }

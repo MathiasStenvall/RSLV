@@ -1,6 +1,5 @@
 package app.Config;
 
-
 import app.config.hibernate.HibernateBaseProperties;
 import app.config.hibernate.HibernateEmfBuilder;
 import jakarta.persistence.EntityManagerFactory;

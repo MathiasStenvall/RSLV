@@ -1,6 +1,7 @@
 package app.service;
 
 import app.DTO.APIResponse;
+import app.DTO.ExerciseDTO;
 import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
@@ -17,8 +18,8 @@ public class ExerciseAPI {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<Exercise> getExercisesWithBodyPartAndEquipment(BodyParts bodyParts, Equipment equipment) {
-        List<Exercise> exercises;
+    public List<ExerciseDTO> getExercisesWithBodyPartAndEquipment(BodyParts bodyParts, Equipment equipment) {
+        List<ExerciseDTO> exercises;
 
         try {
             APIResponse apiResponse = objectMapper.readValue(new URL(apiSearch + "bodyParts=" + bodyParts.getUrlValue() + "&equipments=" + equipment.getUrlValue()), APIResponse.class);
@@ -29,7 +30,7 @@ public class ExerciseAPI {
 
             while (hasNext) {
                 APIResponse response = objectMapper
-                        .readValue(new URL(apiSearch + "bodyParts=" + bodyParts.getUrlValue() + "&equipments=" + equipment.getUrlValue() + "&after=" + cursor), APIResponse.class);
+                        .readValue(new URL(apiSearch + "after=" + cursor + "&bodyParts=" + bodyParts.getUrlValue() + "&equipments=" + equipment.getUrlValue()), APIResponse.class);
                 cursor = response.getMeta().getNextCursor();
                 hasNext = response.getMeta().isHasNextPage();
                 exercises.addAll(response.getData());

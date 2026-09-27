@@ -31,7 +31,6 @@ public class Exercise {
     @ManyToMany
     private Set<ExerciseEquipment> equipments;
 
-    @ElementCollection
-    private List<String> instructions;
+    private String instructions;
 
 }

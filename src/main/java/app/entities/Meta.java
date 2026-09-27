@@ -9,5 +9,6 @@ public class Meta {
     private boolean hasNextPage;
     private boolean hasPreviousPage;
     private String nextCursor;
+    private String previousCursor;
 
 }

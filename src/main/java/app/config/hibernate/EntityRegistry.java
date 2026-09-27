@@ -15,5 +15,9 @@ final class EntityRegistry {
         configuration.addAnnotatedClass(Split.class);
         configuration.addAnnotatedClass(Workout.class);
         configuration.addAnnotatedClass(WorkoutExercise.class);
+        configuration.addAnnotatedClass(ExerciseTargetMuscle.class);
+        configuration.addAnnotatedClass(ExerciseBodyPart.class);
+        configuration.addAnnotatedClass(ExerciseEquipment.class);
+        configuration.addAnnotatedClass(ExerciseSecondaryMuscle.class);
     }
 }
