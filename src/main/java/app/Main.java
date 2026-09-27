@@ -40,7 +40,7 @@ public class Main {
                 exerciseEquipmentDAO);
 
         List<Exercise> exercises = exerciseMapper.dtoToEntity(backLeverageMachine);
-        System.out.println(exercises.size());
+        System.out.println(exercises.get(20));
 
         emf.close();
     }
