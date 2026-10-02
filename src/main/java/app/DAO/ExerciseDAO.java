@@ -3,13 +3,12 @@ package app.DAO;
 import app.entities.Exercise;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class ExerciseDAO {
 
-    private EntityManagerFactory emf;
+    private final EntityManagerFactory emf;
 
     public ExerciseDAO(EntityManagerFactory emf) {
         this.emf = emf;
@@ -35,10 +34,10 @@ public class ExerciseDAO {
         try (EntityManager em = emf.createEntityManager()){
             Exercise found = em.find(Exercise.class, id);
             if (found != null){
-                found.getBodyParts().size();
-                found.getTargetMuscles().size();
-                found.getSecondaryMuscles().size();
-                found.getEquipments().size();
+                int bpSize = found.getBodyParts().size();
+                int tmSize = found.getTargetMuscles().size();
+                int smSize = found.getSecondaryMuscles().size();
+                int eSize = found.getEquipments().size();
 
             }
             return found;

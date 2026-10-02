@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 public class ExerciseController {
 
-    private JavalinConfig config;
-    private ExerciseDAO dao;
+    private final JavalinConfig config;
+    private final ExerciseDAO dao;
 
     public ExerciseController(JavalinConfig config, ExerciseDAO dao) {
         this.config = config;

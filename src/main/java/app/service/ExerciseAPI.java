@@ -2,7 +2,6 @@ package app.service;
 
 import app.DTO.APIResponse;
 import app.DTO.ExerciseDTO;
-import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
 import com.fasterxml.jackson.databind.ObjectMapper;
