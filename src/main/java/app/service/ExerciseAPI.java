@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ExerciseAPI {
 
     private final String apiSearch = "https://oss.exercisedb.dev/api/v1/exercises?";

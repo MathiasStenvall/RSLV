@@ -1,9 +1,6 @@
 package app;
 
-import app.DAO.ExerciseBodyPartDAO;
-import app.DAO.ExerciseEquipmentDAO;
-import app.DAO.ExerciseSecondaryMuscleDAO;
-import app.DAO.ExerciseTargetMuscleDAO;
+import app.DAO.*;
 import app.DTO.ExerciseDTO;
 import app.config.hibernate.HibernateConfig;
 import app.entities.Exercise;
@@ -41,6 +38,9 @@ public class Main {
 
         List<Exercise> exercises = exerciseMapper.dtoToEntity(backLeverageMachine);
         System.out.println(exercises.get(20));
+
+        ExerciseDAO exerciseDAO = new ExerciseDAO(emf);
+        exerciseDAO.saveExerciseList(exercises);
 
         emf.close();
     }
