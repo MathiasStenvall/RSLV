@@ -12,6 +12,8 @@ import java.util.Set;
 public class Exercise {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
     private String exerciseId;
     private String name;
     private String gifUrl;

@@ -2,6 +2,7 @@ package app.service;
 
 import app.DTO.APIResponse;
 import app.DTO.ExerciseDTO;
+import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +19,35 @@ public class ExerciseAPI {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    public List<ExerciseDTO> getAllExercises(){
+        List<ExerciseDTO> exercises;
+
+        try {
+            APIResponse apiResponse = objectMapper.readValue(new URL(apiSearch), APIResponse.class);
+            String cursor = apiResponse.getMeta().getNextCursor();
+            boolean hasNext = apiResponse.getMeta().isHasNextPage();
+
+            exercises = new ArrayList<>(apiResponse.getData());
+
+            while (hasNext) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException(e);
+                }
+                APIResponse response = objectMapper
+                        .readValue(new URL(apiSearch + "after=" + cursor), APIResponse.class);
+                cursor = response.getMeta().getNextCursor();
+                hasNext = response.getMeta().isHasNextPage();
+                exercises.addAll(response.getData());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return exercises;
+    }
+
     public List<ExerciseDTO> getExercisesWithBodyPartAndEquipment(BodyParts bodyParts, Equipment equipment) {
         List<ExerciseDTO> exercises;
 
@@ -29,6 +59,12 @@ public class ExerciseAPI {
             exercises = new ArrayList<>(apiResponse.getData());
 
             while (hasNext) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException(e);
+                }
                 APIResponse response = objectMapper
                         .readValue(new URL(apiSearch + "after=" + cursor + "&bodyParts=" + bodyParts.getUrlValue() + "&equipments=" + equipment.getUrlValue()), APIResponse.class);
                 cursor = response.getMeta().getNextCursor();

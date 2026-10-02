@@ -3,6 +3,7 @@ package app.DAO;
 import app.entities.Exercise;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -21,6 +22,35 @@ public class ExerciseDAO {
                 em.persist(e);
             }
             em.getTransaction().commit();
+        }
+    }
+
+    public List<Exercise> getAllExercises(){
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery("SELECT e FROM Exercise e", Exercise.class).getResultList();
+        }
+    }
+
+    public Exercise getById(int id){
+        try (EntityManager em = emf.createEntityManager()){
+            Exercise found = em.find(Exercise.class, id);
+            if (found != null){
+                found.getBodyParts().size();
+                found.getTargetMuscles().size();
+                found.getSecondaryMuscles().size();
+                found.getEquipments().size();
+
+            }
+            return found;
+        }
+    }
+
+    public Exercise saveExercise(Exercise exercise){
+        try (EntityManager em = emf.createEntityManager()){
+            em.getTransaction().begin();
+            em.persist(exercise);
+            em.getTransaction().commit();
+            return exercise;
         }
     }
 
