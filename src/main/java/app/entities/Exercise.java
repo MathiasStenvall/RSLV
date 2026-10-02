@@ -28,6 +28,7 @@ public class Exercise {
     @ManyToMany
     private Set<ExerciseEquipment> equipments;
 
+    @Column (columnDefinition = "TEXT")
     private String instructions;
 
 }
