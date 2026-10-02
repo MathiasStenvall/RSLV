@@ -23,7 +23,10 @@ public class ExerciseController {
         config.routes.get("/api/v1/", ctx -> ctx.result("Welcome to RSLV API. \n" +
                 "Feel free to use our endpoints to fetch exercises from our collection."));
 
-        config.routes.get("/api/v1/exercise", ctx -> ctx.json(dao.getAllExercises()));
+        config.routes.get("/api/v1/exercise", ctx -> {
+            int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+            ctx.json(dao.getAllExercises(page));
+        });
 
         config.routes.get("/api/v1/exercise/{id}", ctx -> {
             int id = ctx.pathParamAsClass("id", Integer.class)
