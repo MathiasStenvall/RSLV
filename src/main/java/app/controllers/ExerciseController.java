@@ -53,7 +53,7 @@ public class ExerciseController {
                         .check(e -> e.getEquipments() != null
                                 && !e.getEquipments().isEmpty(), "Please provide the equipment needed to perform this exercise")
                         .check( e -> e.getInstructions() != null
-                                && !e.getInstructions().isBlank(), "PLease provide instructions for the exercise").get();
+                                && !e.getInstructions().isBlank(), "Please provide instructions for the exercise").get();
 
                 Exercise saved = dao.saveExercise(exercise);
                 ctx.status(HttpStatus.CREATED);
