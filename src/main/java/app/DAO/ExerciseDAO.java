@@ -26,7 +26,15 @@ public class ExerciseDAO {
 
     public List<Exercise> getAllExercises(){
         try (EntityManager em = emf.createEntityManager()){
-            return em.createQuery("SELECT e FROM Exercise e", Exercise.class).getResultList();
+            List<Exercise> exercises =  em.createQuery("SELECT e FROM Exercise e", Exercise.class).getResultList();
+            for (Exercise e: exercises){
+                int bpSize = e.getBodyParts().size();
+                int tmSize = e.getTargetMuscles().size();
+                int smSize = e.getSecondaryMuscles().size();
+                int eSize = e.getEquipments().size();
+            }
+            //TODO add pagination ?
+            return exercises;
         }
     }
 
