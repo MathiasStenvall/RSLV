@@ -4,10 +4,13 @@ import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
 import app.enums.BodyParts;
 import io.javalin.config.JavalinConfig;
+import io.javalin.http.BadRequestResponse;
 import io.javalin.http.HttpStatus;
+import io.javalin.http.NotFoundResponse;
 import io.javalin.validation.ValidationException;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ExerciseController {
 
@@ -25,7 +28,11 @@ public class ExerciseController {
 
         config.routes.get("/api/v1/exercise", ctx -> {
             int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
-            ctx.json(dao.getAllExercises(page));
+            List<Exercise> result = dao.getAllExercises(page);
+            if (result.isEmpty()){
+                throw new NotFoundResponse("Resource not found");
+            }
+            ctx.json(result);
         });
 
         config.routes.get("/api/v1/exercise/{id}", ctx -> {
@@ -35,8 +42,7 @@ public class ExerciseController {
             Exercise exercise = dao.getById(id);
 
             if (exercise == null) {
-                ctx.result("No exercise found with id: " + id);
-                throw new Exception();
+                throw new NotFoundResponse("Resource not found");
             }
             ctx.json(exercise);
         });
@@ -60,7 +66,7 @@ public class ExerciseController {
                 ctx.json(saved);
 
             } catch (ValidationException e) {
-                ctx.status(HttpStatus.BAD_REQUEST).json(e.getErrors());
+                throw new BadRequestResponse("Bad request");
             }
         });
     }

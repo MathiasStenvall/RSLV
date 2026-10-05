@@ -5,6 +5,7 @@ import app.DTO.ExerciseDTO;
 import app.config.hibernate.HibernateConfig;
 import app.controllers.ExerciseController;
 import app.entities.Exercise;
+import app.mapper.ExceptionMapper;
 import app.mapper.ExerciseMapper;
 import app.service.ExerciseAPI;
 import app.service.LLMAPI;
@@ -13,6 +14,8 @@ import jakarta.persistence.EntityManagerFactory;
 
 import java.io.IOException;
 import java.util.List;
+
+import static app.mapper.ExceptionMapper.exceptionMapping;
 
 public class Main {
 
@@ -45,6 +48,7 @@ public class Main {
         */
 
         Javalin app = Javalin.create(config -> {
+            ExceptionMapper.exceptionMapping(config);
             new ExerciseController(config, exerciseDAO).addRoutes();
         }).start(7070);
 
