@@ -64,4 +64,28 @@ public class ExerciseDAO {
         }
     }
 
+    public long getExerciseAmount(){
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery("SELECT COUNT(e) FROM Exercise e", Long.class).getSingleResult();
+        }
+    }
+
+    public long getEquipmentAmount(){
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery("SELECT COUNT(e) FROM ExerciseEquipment e", Long.class).getSingleResult();
+        }
+    }
+
+    public long getBodyPartAmount(){
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery("SELECT COUNT(b) FROM ExerciseBodyPart b", Long.class).getSingleResult();
+        }
+    }
+
+    public long getTargetMuscleAmount(){
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery("SELECT COUNT(t) FROM ExerciseTargetMuscle t", Long.class).getSingleResult();
+        }
+    }
+
 }
