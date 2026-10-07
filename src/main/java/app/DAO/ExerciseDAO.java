@@ -37,7 +37,6 @@ public class ExerciseDAO {
                 int smSize = e.getSecondaryMuscles().size();
                 int eSize = e.getEquipments().size();
             }
-            //TODO add pagination ?
             return exercises;
         }
     }
