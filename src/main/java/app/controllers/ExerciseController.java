@@ -27,7 +27,7 @@ public class ExerciseController {
 
         config.routes.before(ctx -> RequestCounter.increment());
 
-        config.routes.get("/api/v1/counter", ctx -> ctx.result("This api has received "
+        config.routes.get("/api/v1/counter", ctx -> ctx.result("This API has received "
                 + RequestCounter.getCounter() + " requests since its last reset (including this one!)."));
 
         config.routes.get("/api/v1/", ctx -> ctx.result("Welcome to RSLV API. \n" +
