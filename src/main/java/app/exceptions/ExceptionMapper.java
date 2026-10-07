@@ -1,4 +1,4 @@
-package app.mapper;
+package app.exceptions;
 
 import app.DTO.ErrorResponse;
 import io.javalin.config.JavalinConfig;

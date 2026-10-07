@@ -1,21 +1,14 @@
 package app;
 
 import app.DAO.*;
-import app.DTO.ExerciseDTO;
 import app.config.hibernate.HibernateConfig;
 import app.controllers.ExerciseController;
-import app.entities.Exercise;
-import app.mapper.ExceptionMapper;
-import app.mapper.ExerciseMapper;
-import app.service.ExerciseAPI;
+import app.exceptions.ExceptionMapper;
 import app.service.LLMAPI;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.io.IOException;
-import java.util.List;
-
-import static app.mapper.ExceptionMapper.exceptionMapping;
 
 public class Main {
 
