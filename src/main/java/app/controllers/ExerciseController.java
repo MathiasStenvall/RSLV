@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
+import app.utils.RequestCounter;
 import app.enums.BodyParts;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
@@ -23,6 +24,13 @@ public class ExerciseController {
     }
 
     public void addRoutes() {
+
+        config.routes.before(ctx -> RequestCounter.increment());
+
+        config.routes.get("/api/v1/counter", ctx -> {
+            ctx.result("This api has received " + RequestCounter.getCounter() + " requests since its last reset (including this one!).");
+        });
+
         config.routes.get("/api/v1/", ctx -> ctx.result("Welcome to RSLV API. \n" +
                 "Feel free to use our endpoints to fetch exercises from our collection."));
 
