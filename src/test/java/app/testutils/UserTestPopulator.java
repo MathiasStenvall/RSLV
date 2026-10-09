@@ -13,25 +13,21 @@ import java.util.Map;
 
 public final class UserTestPopulator {
 
-    private UserTestPopulator(){}
+    private UserTestPopulator() {
+    }
 
     public static Map<String, User> populate(EntityManagerFactory emf) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            LocalDate testDate = LocalDate.of(2026, 8, 29);
 
-            User u1 = User.builder().name("christian").age(23).email("ckenter@gmail.com")
-                    .password("1234").phoneNumber("12345678").sex("Male")
-                    .height(171).currentWeight(71.4).signupDate(testDate)
-                    .workoutExercises(List.of()).splits(List.of()).build();
-            User u2 = User.builder().name("nicoline").age(25).email("nico@gmail.com")
-                    .password("1234").phoneNumber("12345678").sex("Female")
-                    .height(168).currentWeight(64.7).signupDate(testDate.plusDays(2))
-                    .workoutExercises(List.of()).splits(List.of()).build();
-            User u3 = User.builder().name("rosa").age(23).email("rosa@gmail.com")
-                    .password("1234").phoneNumber("12345678").sex("Female")
-                    .height(151).currentWeight(56.1).signupDate(testDate.plusDays(5))
-                    .workoutExercises(List.of()).splits(List.of()).build();
+            User u1 = new User("christian", 23, "user", "ckenter@gmail.com", "1234",
+                    "12345678", "male", 171, 71.4);
+
+            User u2 = new User("nicoline", 25, "user", "nico@gmail.com", "1234",
+                    "12345678", "female", 168, 64.7);
+
+            User u3 = new User("rosa", 23, "user", "rosa@gmail.com", "1234",
+                    "12345678", "female", 151, 56.1);
 
             try {
                 em.createNativeQuery("TRUNCATE TABLE users RESTART IDENTITY CASCADE").executeUpdate();

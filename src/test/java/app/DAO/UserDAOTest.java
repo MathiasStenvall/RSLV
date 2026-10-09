@@ -36,7 +36,8 @@ class UserDAOTest {
 
     @Test
     void save() {
-        User newUser = User.builder().name("marshall").age(53).sex("Male").build();
+        User newUser = new User("Marshall", 53, "user", "marshall@gmail.com", "slimShady", "45678792"
+        , "male", 178, 84.3);
         boolean created = userDAO.save(newUser);
 
         assertThat(String.valueOf(created), true);
@@ -63,10 +64,10 @@ class UserDAOTest {
     void update() {
         User seed = seeded.get("User1");
 
-        User updated = User.builder().id(seed.getId()).name("christian").age(24).email("christiank@gmail.com")
-                .password("1234").phoneNumber("12345678").sex("Male")
-                .height(171).currentWeight(71.4).signupDate(LocalDate.now()).build();
+        User updated = new User("christian", 24, "user", "christiank@gmail.com",
+                "1234", "12345678", "male", 171, 71.4);
 
+        updated.setId(seed.getId());
         User result = userDAO.update(updated);
 
         assertThat(result.getId(), is(seed.getId()));
