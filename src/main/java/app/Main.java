@@ -3,6 +3,7 @@ package app;
 import app.DAO.*;
 import app.config.hibernate.HibernateConfig;
 import app.controllers.ExerciseController;
+import app.controllers.rslvController;
 import app.exceptions.ExceptionMapper;
 import app.service.LLMAPI;
 import io.javalin.Javalin;
@@ -43,6 +44,7 @@ public class Main {
         Javalin app = Javalin.create(config -> {
             ExceptionMapper.exceptionMapping(config);
             new ExerciseController(config, exerciseDAO).addRoutes();
+            new rslvController(config, exerciseDAO).addRoutes();
         }).start(7070);
 
 
