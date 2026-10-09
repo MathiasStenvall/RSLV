@@ -6,7 +6,6 @@ import app.testutils.UserTestPopulator;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 

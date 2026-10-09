@@ -2,7 +2,6 @@ package app.controllers;
 
 import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
-import app.utils.RequestCounter;
 import app.enums.BodyParts;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
@@ -19,7 +18,6 @@ public class ExerciseController {
 
     private final JavalinConfig config;
     private final ExerciseDAO dao;
-    private final ExecutorService executor = Executors.newFixedThreadPool(3);
 
     public ExerciseController(JavalinConfig config, ExerciseDAO dao) {
         this.config = config;
