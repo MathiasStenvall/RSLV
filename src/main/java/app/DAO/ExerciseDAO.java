@@ -15,23 +15,23 @@ public class ExerciseDAO {
     }
 
     public void saveExerciseList(List<Exercise> list) {
-        try (EntityManager em = emf.createEntityManager()){
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            for (Exercise e: list){
+            for (Exercise e : list) {
                 em.persist(e);
             }
             em.getTransaction().commit();
         }
     }
 
-    public List<Exercise> getAllExercises(int page){
+    public List<Exercise> getAllExercises(int page) {
         int pageSize = 20;
-        try (EntityManager em = emf.createEntityManager()){
-            List<Exercise> exercises =  em.createQuery("SELECT e FROM Exercise e ORDER BY e.id", Exercise.class)
-                    .setFirstResult((page-1) * pageSize)
+        try (EntityManager em = emf.createEntityManager()) {
+            List<Exercise> exercises = em.createQuery("SELECT e FROM Exercise e ORDER BY e.id", Exercise.class)
+                    .setFirstResult((page - 1) * pageSize)
                     .setMaxResults(pageSize)
                     .getResultList();
-            for (Exercise e: exercises){
+            for (Exercise e : exercises) {
                 int bpSize = e.getBodyParts().size();
                 int tmSize = e.getTargetMuscles().size();
                 int smSize = e.getSecondaryMuscles().size();
@@ -41,10 +41,10 @@ public class ExerciseDAO {
         }
     }
 
-    public Exercise getById(int id){
-        try (EntityManager em = emf.createEntityManager()){
+    public Exercise getById(int id) {
+        try (EntityManager em = emf.createEntityManager()) {
             Exercise found = em.find(Exercise.class, id);
-            if (found != null){
+            if (found != null) {
                 int bpSize = found.getBodyParts().size();
                 int tmSize = found.getTargetMuscles().size();
                 int smSize = found.getSecondaryMuscles().size();
@@ -55,8 +55,8 @@ public class ExerciseDAO {
         }
     }
 
-    public Exercise saveExercise(Exercise exercise){
-        try (EntityManager em = emf.createEntityManager()){
+    public Exercise saveExercise(Exercise exercise) {
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(exercise);
             em.getTransaction().commit();
@@ -64,26 +64,50 @@ public class ExerciseDAO {
         }
     }
 
-    public long getExerciseAmount(){
-        try (EntityManager em = emf.createEntityManager()){
+    public Exercise updateExercise(Exercise exercise) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            Exercise updated = em.merge(exercise);
+            em.getTransaction().commit();
+            return updated;
+        }
+    }
+
+    public boolean deleteExercise(int id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            Exercise exercise = em.find(Exercise.class, id);
+            if (exercise == null) {
+                em.getTransaction().rollback();
+                return false;
+            }
+
+            em.remove(exercise);
+            em.getTransaction().commit();
+            return true;
+        }
+    }
+
+    public long getExerciseAmount() {
+        try (EntityManager em = emf.createEntityManager()) {
             return em.createQuery("SELECT COUNT(e) FROM Exercise e", Long.class).getSingleResult();
         }
     }
 
-    public long getEquipmentAmount(){
-        try (EntityManager em = emf.createEntityManager()){
+    public long getEquipmentAmount() {
+        try (EntityManager em = emf.createEntityManager()) {
             return em.createQuery("SELECT COUNT(e) FROM ExerciseEquipment e", Long.class).getSingleResult();
         }
     }
 
-    public long getBodyPartAmount(){
-        try (EntityManager em = emf.createEntityManager()){
+    public long getBodyPartAmount() {
+        try (EntityManager em = emf.createEntityManager()) {
             return em.createQuery("SELECT COUNT(b) FROM ExerciseBodyPart b", Long.class).getSingleResult();
         }
     }
 
-    public long getTargetMuscleAmount(){
-        try (EntityManager em = emf.createEntityManager()){
+    public long getTargetMuscleAmount() {
+        try (EntityManager em = emf.createEntityManager()) {
             return em.createQuery("SELECT COUNT(t) FROM ExerciseTargetMuscle t", Long.class).getSingleResult();
         }
     }
