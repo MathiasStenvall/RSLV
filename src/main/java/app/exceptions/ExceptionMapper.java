@@ -30,6 +30,7 @@ public class ExceptionMapper {
 
         config.routes.exception(UserAlreadyExistsException.class, (e, ctx) -> {
             log.warn("User registration error: {}", e.getMessage());
+
             ctx.status(HttpStatus.CONFLICT);
             ctx.json(new ErrorResponse(409, e.getMessage()));
         });
