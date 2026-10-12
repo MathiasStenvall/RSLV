@@ -43,8 +43,8 @@ public class Main {
 
         Javalin app = Javalin.create(config -> {
             ExceptionMapper.exceptionMapping(config);
-            new ExerciseController(config, exerciseDAO).addRoutes();
             new rslvController(config, exerciseDAO).addRoutes();
+            new ExerciseController(config, exerciseDAO).addRoutes();
         }).start(7070);
 
 

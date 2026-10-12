@@ -12,7 +12,7 @@ public class ExceptionMapper {
 
     private static final Logger log = LoggerFactory.getLogger(ExceptionMapper.class);
 
-    public static void exceptionMapping (JavalinConfig config){
+    public static void exceptionMapping(JavalinConfig config) {
 
         config.routes.exception(BadRequestResponse.class, (e, ctx) -> {
             log.warn("Bad request: {}", e.getMessage());
@@ -28,13 +28,18 @@ public class ExceptionMapper {
             ctx.json(new ErrorResponse(404, e.getMessage()));
         });
 
+        config.routes.exception(UserAlreadyExistsException.class, (e, ctx) -> {
+            log.warn("User registration error: {}", e.getMessage());
+            ctx.status(HttpStatus.CONFLICT);
+            ctx.json(new ErrorResponse(409, e.getMessage()));
+        });
+
         config.routes.exception(Exception.class, (e, ctx) -> {
             log.error("Unexpected exception: {}", e.getMessage());
 
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR);
             ctx.json((new ErrorResponse(500, e.getMessage())));
         });
-
 
 
     }
