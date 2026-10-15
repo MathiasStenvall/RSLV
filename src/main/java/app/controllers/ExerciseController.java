@@ -5,11 +5,9 @@ import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
 import io.javalin.config.JavalinConfig;
-import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
-import io.javalin.validation.ValidationException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,16 +47,11 @@ public class ExerciseController {
         });
 
         config.routes.post("/api/v1/exercise", ctx -> {
-            try {
-                Exercise exercise = validateExercise(ctx);
+            Exercise exercise = validateExercise(ctx);
 
-                Exercise saved = dao.saveExercise(exercise);
-                ctx.status(HttpStatus.CREATED);
-                ctx.json(saved);
-
-            } catch (ValidationException e) {
-                throw new BadRequestResponse("Bad request");
-            }
+            Exercise saved = dao.saveExercise(exercise);
+            ctx.status(HttpStatus.CREATED);
+            ctx.json(saved);
         });
 
         config.routes.put("/api/v1/exercise/{id}", ctx -> {
@@ -71,17 +64,13 @@ public class ExerciseController {
                 throw new NotFoundResponse("Resource not found");
             }
 
-            try {
-                Exercise exercise = validateExercise(ctx);
+            Exercise exercise = validateExercise(ctx);
 
-                exercise.setId(id);
+            exercise.setId(id);
 
-                Exercise updated = dao.updateExercise(exercise);
+            Exercise updated = dao.updateExercise(exercise);
 
-                ctx.json(updated);
-            } catch (ValidationException e) {
-                throw new BadRequestResponse("Bad Request");
-            }
+            ctx.json(updated);
         });
 
         config.routes.delete("/api/v1/exercise/{id}", ctx -> {

@@ -2,9 +2,9 @@ package app.exceptions;
 
 import app.DTO.ErrorResponse;
 import io.javalin.config.JavalinConfig;
-import io.javalin.http.BadRequestResponse;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
+import io.javalin.validation.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,8 +14,8 @@ public class ExceptionMapper {
 
     public static void exceptionMapping(JavalinConfig config) {
 
-        config.routes.exception(BadRequestResponse.class, (e, ctx) -> {
-            log.warn("Bad request: {}", e.getMessage());
+        config.routes.exception(ValidationException.class, (e, ctx) -> {
+            log.warn("Validation error: {}", e.getMessage());
 
             ctx.status(HttpStatus.BAD_REQUEST);
             ctx.json(new ErrorResponse(400, e.getMessage()));
@@ -39,7 +39,7 @@ public class ExceptionMapper {
             log.error("Unexpected exception: {}", e.getMessage());
 
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR);
-            ctx.json((new ErrorResponse(500, e.getMessage())));
+            ctx.json((new ErrorResponse(500, "Internal server error.")));
         });
 
 
