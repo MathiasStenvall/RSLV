@@ -56,7 +56,7 @@ public class rslvController {
         config.routes.get("/", ctx -> ctx.redirect("/api/v1"));
 
         config.routes.get("/api/v1/", ctx -> ctx.result("Welcome to RSLV API. \n" +
-                "Feel free to use our endpoints to fetch exercises from our collection."));
+                "Feel free to use our endpoints to fetch exercises from our collection. \n Documentation is on the way!"));
     }
 
 }
