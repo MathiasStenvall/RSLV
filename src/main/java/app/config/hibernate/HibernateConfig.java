@@ -8,8 +8,10 @@ import java.util.Properties;
 public final class HibernateConfig {
 
     private static volatile EntityManagerFactory emf;
+    private static volatile EntityManagerFactory emfTest;
 
-    private HibernateConfig() {}
+    private HibernateConfig() {
+    }
 
     public static EntityManagerFactory getEntityManagerFactory() {
         if (emf == null) {
@@ -22,10 +24,22 @@ public final class HibernateConfig {
         return emf;
     }
 
+    public static EntityManagerFactory getEntityManagerFactoryForTest() {
+        if (emfTest == null) {
+            synchronized (HibernateConfig.class) {
+                if (emfTest == null) {
+                    Properties props = HibernateBaseProperties.createBase();
+                    setTestProperties(props);
+                    emfTest = HibernateEmfBuilder.build(props);
+                }
+            }
+        }
+        return emfTest;
+    }
+
     private static Properties buildProps() {
         Properties props = HibernateBaseProperties.createBase();
 
-        // Teaching-friendly default - change to update in production
         props.put("hibernate.hbm2ddl.auto", "update");
 
         if (System.getenv("DEPLOYED") != null) {
@@ -52,4 +66,25 @@ public final class HibernateConfig {
         props.put("hibernate.connection.username", username);
         props.put("hibernate.connection.password", password);
     }
+
+    private static Properties setTestProperties(Properties props) {
+        props.put("hibernate.connection.driver_class", "org.testcontainers.jdbc.ContainerDatabaseDriver");
+        props.put("hibernate.connection.url", "jdbc:tc:postgresql:15.3-alpine3.18:///test_db");
+        props.put("hibernate.connection.username", "postgres");
+        props.put("hibernate.connection.password", "postgres");
+        props.put("hibernate.archive.autodetection", "class");
+        props.put("hibernate.show_sql", "true");
+        props.put("hibernate.hbm2ddl.auto", "create-drop");
+        return props;
+    }
+
+    public static synchronized void closeEntityManagerFactoryForTest(){
+        if (emfTest != null){
+            if (emfTest.isOpen()){
+                emfTest.close();
+            }
+            emfTest = null;
+        }
+    }
+
 }
