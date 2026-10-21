@@ -42,6 +42,7 @@ public class Main {
         */
 
         Javalin app = Javalin.create(config -> {
+            config.bundledPlugins.enableRouteOverview("api/v1/routes");
             ExceptionMapper.exceptionMapping(config);
             new rslvController(config, exerciseDAO).addRoutes();
             new ExerciseController(config, exerciseDAO).addRoutes();
