@@ -5,6 +5,7 @@ import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
 import io.javalin.config.JavalinConfig;
+import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
@@ -26,9 +27,12 @@ public class ExerciseController {
     public void addRoutes() {
 
         config.routes.get("/api/v1/exercise", ctx -> {
-            int page = ctx.queryParamAsClass("page", Integer.class)
-                    .check(value -> value > 0, "page must be a positive number")
-                    .getOrDefault(1);
+            int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+
+            if (page <= 0) {
+                throw new BadRequestResponse("Page must be a positive number");
+            }
+
             List<Exercise> result = dao.getAllExercises(page);
 
             ctx.json(result);

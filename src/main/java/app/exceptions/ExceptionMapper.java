@@ -17,8 +17,10 @@ public class ExceptionMapper {
         config.routes.exception(ValidationException.class, (e, ctx) -> {
             log.warn("Validation error: {}", e.getMessage());
 
+            String message = e.getErrors().values().iterator().next().get(0).getMessage();
+
             ctx.status(HttpStatus.BAD_REQUEST);
-            ctx.json(new ErrorResponse(400, e.getMessage()));
+            ctx.json(new ErrorResponse(400, message));
         });
 
         config.routes.exception(NotFoundResponse.class, (e, ctx) -> {
