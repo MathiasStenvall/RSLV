@@ -124,7 +124,7 @@ public class ExerciseDAO {
         }
     }
 
-    private Set<ExerciseBodyPart> checkBodyParts(EntityManager em, Exercise exercise){
+    private Set<ExerciseBodyPart> checkBodyParts(EntityManager em, Exercise exercise) {
         Set<ExerciseBodyPart> bodyParts = new HashSet<>();
 
         for (ExerciseBodyPart bp : exercise.getBodyParts()) {
@@ -146,10 +146,10 @@ public class ExerciseDAO {
         return bodyParts;
     }
 
-    private Set<ExerciseEquipment> checkEquipments(EntityManager em, Exercise exercise){
+    private Set<ExerciseEquipment> checkEquipments(EntityManager em, Exercise exercise) {
         Set<ExerciseEquipment> equipments = new HashSet<>();
 
-        for (ExerciseEquipment eq : exercise.getEquipments()){
+        for (ExerciseEquipment eq : exercise.getEquipments()) {
             ExerciseEquipment found = em.createQuery(
                             "SELECT e FROM ExerciseEquipment e WHERE e.equipment = :name",
                             ExerciseEquipment.class)

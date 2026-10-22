@@ -107,12 +107,12 @@ class ExerciseControllerTest {
     }
 
     @Test
-    void putExercise(){
+    void putExercise() {
         int id = ids.get(0);
 
         String json = """
                 {
-                "exerciseId": "test01",
+                "exerciseId": "updatedTest01",
                 "name": "updated bench press",
                 "instructions": "Lower the bar to your lower chest and press the bar upward",
                 "bodyParts": [
@@ -130,11 +130,31 @@ class ExerciseControllerTest {
                 .spec(requestSpec)
                 .body(json)
                 .when()
-                .put("/exercise/" + id )
+                .put("/exercise/" + id)
                 .then()
                 .statusCode(200)
                 .body("name", is("updated bench press"))
+                .body("exerciseId", is("updatedTest01"))
                 .body("id", is(id));
+    }
+
+    @Test
+    void deleteExercise() {
+        int id = ids.get(0);
+
+        given()
+                .spec(requestSpec)
+                .when()
+                .delete("/exercise/" + id)
+                .then()
+                .statusCode(204);
+
+        given()
+                .spec(requestSpec)
+                .when()
+                .get("/exercise/" + id)
+                .then()
+                .statusCode(404);
     }
 
 }
