@@ -58,7 +58,8 @@ public class rslvController {
         config.routes.get("/api/v1/", ctx -> ctx.result("""
                 Welcome to RSLV API.\s
                 Feel free to use our endpoints to fetch exercises from our collection.\s
-                Visit /routes to see all available endpoints."""));
+                Visit /routes to see all available endpoints.\s
+                All data was fetched from AscendAPI."""));
     }
 
 }
