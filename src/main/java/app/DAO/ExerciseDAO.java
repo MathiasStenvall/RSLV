@@ -1,10 +1,14 @@
 package app.DAO;
 
 import app.entities.Exercise;
+import app.entities.ExerciseBodyPart;
+import app.entities.ExerciseEquipment;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ExerciseDAO {
 
@@ -58,6 +62,49 @@ public class ExerciseDAO {
     public Exercise saveExercise(Exercise exercise) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
+
+            Set<ExerciseBodyPart> bodyParts = new HashSet<>();
+
+            for (ExerciseBodyPart bp : exercise.getBodyParts()) {
+                ExerciseBodyPart found = em.createQuery(
+                                "SELECT b FROM ExerciseBodyPart b WHERE b.bodyPart = :name",
+                                ExerciseBodyPart.class)
+                        .setParameter("name", bp.getBodyPart())
+                        .getResultStream()
+                        .findFirst()
+                        .orElse(null);
+
+                if (found == null) {
+                    found = new ExerciseBodyPart();
+                    found.setBodyPart(bp.getBodyPart());
+                    em.persist(found);
+                }
+                bodyParts.add(found);
+            }
+
+            exercise.setBodyParts(bodyParts);
+
+            Set<ExerciseEquipment> equipments = new HashSet<>();
+
+            for (ExerciseEquipment eq : exercise.getEquipments()){
+                ExerciseEquipment found = em.createQuery(
+                        "SELECT e FROM ExerciseEquipment e WHERE e.equipment = :name",
+                        ExerciseEquipment.class)
+                        .setParameter("name", eq.getEquipment())
+                        .getResultStream()
+                        .findFirst()
+                        .orElse(null);
+
+                if (found == null) {
+                    found = new ExerciseEquipment();
+                    found.setEquipment(eq.getEquipment());
+                    em.persist(found);
+                }
+                equipments.add(found);
+            }
+
+            exercise.setEquipments(equipments);
+
             em.persist(exercise);
             em.getTransaction().commit();
             return exercise;

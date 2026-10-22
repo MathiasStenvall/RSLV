@@ -77,4 +77,34 @@ class ExerciseControllerTest {
                 .body("exerciseId", is("test01"));
     }
 
+    @Test
+    void postExercise() {
+        String json = """
+                {
+                "exerciseId": "test03",
+                "name": "incline bench press",
+                "instructions": "press the bar upward",
+                "bodyParts": [
+                {"bodyPart": "chest"}
+                ],
+                "equipments": [
+                {"equipment": "barbell"}
+                ],
+                "targetMuscles": [],
+                "secondaryMuscles": []
+                }
+                """;
+
+        given()
+                .spec(requestSpec)
+                .body(json)
+                .when()
+                .post("/exercise")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .body("name", is("incline bench press"))
+                .body("exerciseId", is("test03"));
+    }
+
 }
