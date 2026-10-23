@@ -3,7 +3,6 @@ package app.utils;
 import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
-import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 
 import java.util.Arrays;
