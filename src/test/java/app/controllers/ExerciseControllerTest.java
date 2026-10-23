@@ -1,12 +1,11 @@
 package app.controllers;
 
-import app.Main;
+import app.config.ServerConfig;
 import app.config.hibernate.HibernateConfig;
 import app.entities.User;
 import app.enums.Role;
 import app.service.JWTService;
 import app.testutils.ExerciseControllerTestPopulator;
-import app.utils.Utils;
 import com.nimbusds.jose.JOSEException;
 import io.javalin.Javalin;
 import io.restassured.builder.RequestSpecBuilder;
@@ -18,6 +17,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Base64;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -29,21 +29,19 @@ class ExerciseControllerTest {
     private static Javalin app;
     private static RequestSpecification requestSpec;
     private List<Integer> ids;
-    private static JWTService jwtService;
     private static String adminToken;
+    private static final String TEST_SECRET = Base64.getEncoder().encodeToString(new byte[32]);
 
     @BeforeAll
     static void startServer() throws JOSEException {
         emf = HibernateConfig.getEntityManagerFactoryForTest();
-        app = Main.startServer(0, emf);
+        app = ServerConfig.startServer(0, emf, TEST_SECRET);
 
         User admin = new User();
         admin.setId(1);
         admin.setRole(Role.ADMIN);
 
-        String encodedSecret = Utils.getPropertyValue("JWT_SECRET", "config.properties");
-
-        jwtService = new JWTService(encodedSecret);
+        JWTService jwtService = new JWTService(TEST_SECRET);
         adminToken = jwtService.generateToken(admin);
 
         requestSpec = new RequestSpecBuilder()
