@@ -70,17 +70,21 @@ public class UserDAO implements IDAO<User, Integer> {
 
     public boolean delete(Integer id) {
         try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
             try {
-                em.getTransaction().begin();
-                User user = findById(id);
+                User user = em.find(User.class, id);
                 if (user != null) {
                     em.remove(user);
                     em.getTransaction().commit();
                     return true;
                 }
-            } catch (Exception e) {
-                em.getTransaction().isActive();
+
                 em.getTransaction().rollback();
+
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
                 throw e;
             }
         }
