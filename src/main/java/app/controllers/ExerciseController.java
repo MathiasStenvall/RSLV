@@ -2,15 +2,11 @@ package app.controllers;
 
 import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
-import app.enums.BodyParts;
-import app.enums.Equipment;
+import app.utils.Validator;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
-import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
-
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,7 +47,7 @@ public class ExerciseController {
         });
 
         config.routes.post("/api/v1/exercise", ctx -> {
-            Exercise exercise = validateExercise(ctx);
+            Exercise exercise = Validator.validateExercise(ctx);
 
             Exercise saved = dao.saveExercise(exercise);
             ctx.status(HttpStatus.CREATED);
@@ -68,7 +64,7 @@ public class ExerciseController {
                 throw new NotFoundResponse("Resource not found");
             }
 
-            Exercise exercise = validateExercise(ctx);
+            Exercise exercise = Validator.validateExercise(ctx);
 
             exercise.setId(id);
 
@@ -90,23 +86,5 @@ public class ExerciseController {
             ctx.status(HttpStatus.NO_CONTENT);
         });
 
-    }
-
-    private Exercise validateExercise(Context ctx) {
-        return ctx.bodyValidator(Exercise.class)
-                .check(e -> e.getName() != null
-                        && !e.getName().isBlank(), "Please provide a name.")
-                .check(e -> e.getBodyParts() != null
-                        && !e.getBodyParts().isEmpty(), "Please provide which body part the exercise trains.")
-                .check(e -> e.getBodyParts() != null
-                        && e.getBodyParts().stream().allMatch(bp -> bp != null && Arrays.stream(BodyParts.values())
-                        .anyMatch(b -> b.getValue().equals(bp.getBodyPart()))), "Invalid body part.")
-                .check(e -> e.getEquipments() != null
-                        && !e.getEquipments().isEmpty(), "Please provide the equipment needed to perform this exercise")
-                .check(e -> e.getEquipments() != null
-                        && e.getEquipments().stream().allMatch(eq -> eq != null && Arrays.stream(Equipment.values())
-                        .anyMatch(equ -> equ.getValue().equals(eq.getEquipment()))), "Invalid equipment")
-                .check(e -> e.getInstructions() != null
-                        && !e.getInstructions().isBlank(), "Please provide instructions for the exercise").get();
     }
 }
