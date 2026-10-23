@@ -21,6 +21,7 @@
         <org.slf4j>2.0.17</org.slf4j>
         <hamcrest>3.0</hamcrest>
         <restassured.version>5.5.0</restassured.version>
+        <jwt-version>10.6</jwt-version>
     </properties>
 
     <dependencies>
@@ -149,6 +150,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.22.2</version>
+        </dependency>
+
+        <!--  Security   -->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${jwt-version}</version>
         </dependency>
     </dependencies>
 
