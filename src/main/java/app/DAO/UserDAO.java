@@ -39,12 +39,21 @@ public class UserDAO implements IDAO<User, Integer> {
         return foundUser;
     }
 
+    public User findByEmail(String email) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email"
+                    , User.class);
+            query.setParameter("email", email);
+            return query.getResultStream().findFirst().orElse(null);
+        }
+    }
+
     public List<User> getAll() {
-        try (EntityManager em = emf.createEntityManager()){
+        try (EntityManager em = emf.createEntityManager()) {
             try {
                 TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
                 return query.getResultList();
-            } catch (PersistenceException e){
+            } catch (PersistenceException e) {
                 throw new ApiException(500, "Get users failed: " + e.getMessage());
             }
         }
