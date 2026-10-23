@@ -2,6 +2,8 @@ package app.controllers;
 
 import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
+import app.enums.Role;
+import app.service.JWTAuthenticator;
 import app.utils.Validator;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
@@ -15,11 +17,14 @@ public class ExerciseController {
     private final JavalinConfig config;
     private final ExerciseDAO dao;
     private final Validator validator;
+    private final JWTAuthenticator jwtAuthenticator;
 
-    public ExerciseController(JavalinConfig config, ExerciseDAO dao, Validator validator) {
+    public ExerciseController(JavalinConfig config, ExerciseDAO dao
+            , Validator validator, JWTAuthenticator jwtAuthenticator) {
         this.config = config;
         this.dao = dao;
         this.validator = validator;
+        this.jwtAuthenticator = jwtAuthenticator;
     }
 
     public void addRoutes() {
@@ -49,6 +54,8 @@ public class ExerciseController {
         });
 
         config.routes.post("/api/v1/exercise", ctx -> {
+            jwtAuthenticator.requireRole(ctx, Role.ADMIN);
+
             Exercise exercise = validator.validateExercise(ctx);
 
             Exercise saved = dao.saveExercise(exercise);
@@ -57,6 +64,8 @@ public class ExerciseController {
         });
 
         config.routes.put("/api/v1/exercise/{id}", ctx -> {
+            jwtAuthenticator.requireRole(ctx, Role.ADMIN);
+
             int id = ctx.pathParamAsClass("id", Integer.class)
                     .check(value -> value > 0, "Id must be a positive number").get();
 
@@ -76,6 +85,8 @@ public class ExerciseController {
         });
 
         config.routes.delete("/api/v1/exercise/{id}", ctx -> {
+            jwtAuthenticator.requireRole(ctx, Role.ADMIN);
+
             int id = ctx.pathParamAsClass("id", Integer.class)
                     .check(value -> value > 0, "Id must be a positive number").get();
 

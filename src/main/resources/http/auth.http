@@ -3,14 +3,14 @@ POST http://localhost:7070/api/v1/register
 Content-Type: application/json
 
 {
-  "name": "Test User",
-  "age": 25,
-  "email": "test@testing.com",
+  "name": "Test Admin",
+  "age": 32,
+  "email": "admin@testing.com",
   "password": "test123",
   "phoneNumber": "12345678",
   "sex": "male",
-  "height": 176,
-  "currentWeight": 86.3
+  "height": 184,
+  "currentWeight": 80.7
 }
 
 ### Login with an existing user
@@ -18,6 +18,27 @@ POST localhost:7070/api/v1/login
 Content-Type: application/json
 
 {
-  "email": "test@testing.com",
+  "email": "admin@testing.com",
   "password": "test123"
 }
+
+### POST with/without authentification
+POST localhost:7070/api/v1/exercise
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzkyNzc0OTU2LCJpYXQiOjE3OTI3NzEzNTZ9.wI7FR7GeLphRx0Xq_9Kl0uqlnys0NYK0FgG25thw1os
+
+{}
+
+### PUT with/without authentification
+PUT localhost:7070/api/v1/exercise/1352
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzkyNzc0OTU2LCJpYXQiOjE3OTI3NzEzNTZ9.wI7FR7GeLphRx0Xq_9Kl0uqlnys0NYK0FgG25thw1os
+
+{}
+
+### DELETE with/without authentification (invalid id)
+DELETE localhost:7070/api/v1/exercise/1520
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzkyNzc0OTU2LCJpYXQiOjE3OTI3NzEzNTZ9.wI7FR7GeLphRx0Xq_9Kl0uqlnys0NYK0FgG25thw1os
+
+{}

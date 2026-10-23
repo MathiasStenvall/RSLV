@@ -6,6 +6,7 @@ import app.DTO.UserLoginDTO;
 import app.DTO.UserRegistrationDTO;
 import app.entities.User;
 import app.exceptions.UserAlreadyExistsException;
+import app.service.JWTService;
 import app.utils.RequestCounter;
 import app.utils.Validator;
 import io.javalin.config.JavalinConfig;
@@ -27,13 +28,15 @@ public class rslvController {
     private final ExerciseDAO exerciseDAO;
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
     private final Validator validator;
+    private final JWTService jwtService;
 
     public rslvController(JavalinConfig config, UserDAO userDAO
-            , ExerciseDAO exerciseDAO, Validator validator) {
+            , ExerciseDAO exerciseDAO, Validator validator, JWTService jwtService) {
         this.config = config;
         this.userDAO = userDAO;
         this.exerciseDAO = exerciseDAO;
         this.validator = validator;
+        this.jwtService = jwtService;
     }
 
     public void addRoutes() {
@@ -82,7 +85,8 @@ public class rslvController {
            }
 
            ctx.status(HttpStatus.OK);
-           ctx.json(Map.of("message", "Login successful!"));
+           String token = jwtService.generateToken(user);
+           ctx.json(Map.of("token", token));
         });
 
         config.routes.get("/api/v1/counter", ctx -> ctx.result("This API has received "

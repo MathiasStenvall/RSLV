@@ -2,6 +2,7 @@ package app.exceptions;
 
 import app.DTO.ErrorResponse;
 import io.javalin.config.JavalinConfig;
+import io.javalin.http.ForbiddenResponse;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
 import io.javalin.http.UnauthorizedResponse;
@@ -31,6 +32,13 @@ public class ExceptionMapper {
            ctx.json(new ErrorResponse(401, e.getMessage()));
         });
 
+        config.routes.exception(ForbiddenResponse.class, (e, ctx) -> {
+            log.warn("Forbidden request: {}", e.getMessage());
+
+            ctx.status(HttpStatus.FORBIDDEN);
+            ctx.json(new ErrorResponse(403, e.getMessage()));
+        });
+
         config.routes.exception(NotFoundResponse.class, (e, ctx) -> {
             log.warn("Resource not found: {}", e.getMessage());
 
@@ -46,10 +54,10 @@ public class ExceptionMapper {
         });
 
         config.routes.exception(Exception.class, (e, ctx) -> {
-            log.error("Unexpected exception: {}", e.getMessage());
+            log.error("Unexpected exception", e);
 
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR);
-            ctx.json((new ErrorResponse(500, "Internal server error.")));
+            ctx.json(new ErrorResponse(500, "Internal server error."));
         });
 
 

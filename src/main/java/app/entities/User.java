@@ -1,5 +1,6 @@
 package app.entities;
 
+import app.enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +26,9 @@ public class User {
 
     private int age;
 
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -56,7 +59,7 @@ public class User {
                 double currentWeight) {
         this.name = name;
         this.age = age;
-        this.role = "USER";
+        this.role = Role.USER;
         this.email = email;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.phoneNumber = phoneNumber;
