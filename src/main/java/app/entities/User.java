@@ -1,5 +1,6 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.mindrot.jbcrypt.BCrypt;
@@ -26,10 +27,12 @@ public class User {
 
     private String role;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private String phoneNumber;
@@ -48,12 +51,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Split> splits;
 
-    public User(String name, int age, String role, String email,
+    public User(String name, int age, String email,
                 String password, String phoneNumber, String sex, int height,
                 double currentWeight) {
         this.name = name;
         this.age = age;
-        this.role = role;
+        this.role = "USER";
         this.email = email;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.phoneNumber = phoneNumber;

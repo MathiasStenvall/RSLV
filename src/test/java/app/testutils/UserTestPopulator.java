@@ -18,13 +18,13 @@ public final class UserTestPopulator {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            User u1 = new User("christian", 23, "user", "ckenter@gmail.com", "1234",
+            User u1 = new User("christian", 23, "ckenter@gmail.com", "1234",
                     "12345678", "male", 171, 71.4);
 
-            User u2 = new User("nicoline", 25, "user", "nico@gmail.com", "1234",
+            User u2 = new User("nicoline", 25, "nico@gmail.com", "1234",
                     "12345678", "female", 168, 64.7);
 
-            User u3 = new User("rosa", 23, "user", "rosa@gmail.com", "1234",
+            User u3 = new User("rosa", 23, "rosa@gmail.com", "1234",
                     "12345678", "female", 151, 56.1);
 
             try {

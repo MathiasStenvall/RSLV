@@ -35,7 +35,7 @@ class UserDAOTest {
 
     @Test
     void save() {
-        User newUser = new User("Marshall", 53, "user", "marshall@gmail.com", "slimShady", "45678792"
+        User newUser = new User("Marshall", 53, "marshall@gmail.com", "slimShady", "45678792"
         , "male", 178, 84.3);
         boolean created = userDAO.save(newUser);
 
@@ -63,7 +63,7 @@ class UserDAOTest {
     void update() {
         User seed = seeded.get("User1");
 
-        User updated = new User("christian", 24, "user", "christiank@gmail.com",
+        User updated = new User("christian", 24, "christiank@gmail.com",
                 "1234", "12345678", "male", 171, 71.4);
 
         updated.setId(seed.getId());
