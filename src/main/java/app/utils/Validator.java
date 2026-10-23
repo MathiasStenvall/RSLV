@@ -3,13 +3,14 @@ package app.utils;
 import app.entities.Exercise;
 import app.enums.BodyParts;
 import app.enums.Equipment;
+import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 
 import java.util.Arrays;
 
 public class Validator {
 
-    public static Exercise validateExercise(Context ctx) {
+    public Exercise validateExercise(Context ctx) {
         return ctx.bodyValidator(Exercise.class)
                 .check(e -> e.getName() != null
                         && !e.getName().isBlank(), "Please provide a name.")
@@ -25,6 +26,11 @@ public class Validator {
                         .anyMatch(equ -> equ.getValue().equals(eq.getEquipment()))), "Invalid equipment")
                 .check(e -> e.getInstructions() != null
                         && !e.getInstructions().isBlank(), "Please provide instructions for the exercise").get();
+    }
+
+    public boolean validateEmailAndPassword(String email, String password){
+        return email != null && !email.isBlank()
+                && password != null && !password.isBlank();
     }
 
 }

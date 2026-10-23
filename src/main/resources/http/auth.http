@@ -12,3 +12,12 @@ Content-Type: application/json
   "height": 176,
   "currentWeight": 86.3
 }
+
+### Login with an existing user
+POST localhost:7070/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "test@testing.com",
+  "password": "test123"
+}

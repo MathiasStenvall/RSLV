@@ -2,14 +2,17 @@ package app.controllers;
 
 import app.DAO.ExerciseDAO;
 import app.DAO.UserDAO;
+import app.DTO.UserLoginDTO;
 import app.DTO.UserRegistrationDTO;
 import app.entities.User;
 import app.exceptions.UserAlreadyExistsException;
 import app.utils.RequestCounter;
+import app.utils.Validator;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.InternalServerErrorResponse;
+import io.javalin.http.UnauthorizedResponse;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -23,11 +26,14 @@ public class rslvController {
     private final UserDAO userDAO;
     private final ExerciseDAO exerciseDAO;
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
+    private final Validator validator;
 
-    public rslvController(JavalinConfig config, UserDAO userDAO, ExerciseDAO exerciseDAO) {
+    public rslvController(JavalinConfig config, UserDAO userDAO
+            , ExerciseDAO exerciseDAO, Validator validator) {
         this.config = config;
         this.userDAO = userDAO;
         this.exerciseDAO = exerciseDAO;
+        this.validator = validator;
     }
 
     public void addRoutes() {
@@ -35,8 +41,7 @@ public class rslvController {
 
         config.routes.post("/api/v1/register", ctx -> {
             UserRegistrationDTO dto = ctx.bodyAsClass(UserRegistrationDTO.class);
-            if (dto.email() == null || dto.email().isBlank()
-                    || dto.password() == null || dto.password().isBlank()) {
+            if (!validator.validateEmailAndPassword(dto.email(), dto.password())) {
                 throw new BadRequestResponse("Email and password are required.");
             }
 
@@ -61,7 +66,23 @@ public class rslvController {
 
             ctx.status(HttpStatus.CREATED);
             ctx.json(Map.of("message", "User registered succesfully!"));
+        });
 
+        config.routes.post("/api/v1/login", ctx -> {
+            UserLoginDTO dto = ctx.bodyAsClass(UserLoginDTO.class);
+
+            if (!validator.validateEmailAndPassword(dto.email(), dto.password())) {
+                throw new BadRequestResponse("Email and password are required.");
+            }
+
+           User user = userDAO.findByEmail(dto.email());
+
+           if (user == null || !user.checkPassword(dto.password())){
+               throw new UnauthorizedResponse("Invalid email or password.");
+           }
+
+           ctx.status(HttpStatus.OK);
+           ctx.json(Map.of("message", "Login successful!"));
         });
 
         config.routes.get("/api/v1/counter", ctx -> ctx.result("This API has received "

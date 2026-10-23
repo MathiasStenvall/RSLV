@@ -4,6 +4,7 @@ import app.DTO.ErrorResponse;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.HttpStatus;
 import io.javalin.http.NotFoundResponse;
+import io.javalin.http.UnauthorizedResponse;
 import io.javalin.validation.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,13 @@ public class ExceptionMapper {
 
             ctx.status(HttpStatus.BAD_REQUEST);
             ctx.json(new ErrorResponse(400, message));
+        });
+
+        config.routes.exception(UnauthorizedResponse.class, (e, ctx) -> {
+           log.warn("Unauthorized request: {}", e.getMessage());
+
+           ctx.status(HttpStatus.UNAUTHORIZED);
+           ctx.json(new ErrorResponse(401, e.getMessage()));
         });
 
         config.routes.exception(NotFoundResponse.class, (e, ctx) -> {

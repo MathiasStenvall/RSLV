@@ -14,10 +14,12 @@ public class ExerciseController {
 
     private final JavalinConfig config;
     private final ExerciseDAO dao;
+    private final Validator validator;
 
-    public ExerciseController(JavalinConfig config, ExerciseDAO dao) {
+    public ExerciseController(JavalinConfig config, ExerciseDAO dao, Validator validator) {
         this.config = config;
         this.dao = dao;
+        this.validator = validator;
     }
 
     public void addRoutes() {
@@ -47,7 +49,7 @@ public class ExerciseController {
         });
 
         config.routes.post("/api/v1/exercise", ctx -> {
-            Exercise exercise = Validator.validateExercise(ctx);
+            Exercise exercise = validator.validateExercise(ctx);
 
             Exercise saved = dao.saveExercise(exercise);
             ctx.status(HttpStatus.CREATED);
@@ -64,7 +66,7 @@ public class ExerciseController {
                 throw new NotFoundResponse("Resource not found");
             }
 
-            Exercise exercise = Validator.validateExercise(ctx);
+            Exercise exercise = validator.validateExercise(ctx);
 
             exercise.setId(id);
 
