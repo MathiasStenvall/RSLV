@@ -2,7 +2,12 @@ package app.controllers;
 
 import app.Main;
 import app.config.hibernate.HibernateConfig;
+import app.entities.User;
+import app.enums.Role;
+import app.service.JWTService;
 import app.testutils.ExerciseControllerTestPopulator;
+import app.utils.Utils;
+import com.nimbusds.jose.JOSEException;
 import io.javalin.Javalin;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -24,11 +29,22 @@ class ExerciseControllerTest {
     private static Javalin app;
     private static RequestSpecification requestSpec;
     private List<Integer> ids;
+    private static JWTService jwtService;
+    private static String adminToken;
 
     @BeforeAll
-    static void startServer() {
+    static void startServer() throws JOSEException {
         emf = HibernateConfig.getEntityManagerFactoryForTest();
         app = Main.startServer(0, emf);
+
+        User admin = new User();
+        admin.setId(1);
+        admin.setRole(Role.ADMIN);
+
+        String encodedSecret = Utils.getPropertyValue("JWT_SECRET", "config.properties");
+
+        jwtService = new JWTService(encodedSecret);
+        adminToken = jwtService.generateToken(admin);
 
         requestSpec = new RequestSpecBuilder()
                 .setBaseUri("http://localhost")
@@ -97,6 +113,7 @@ class ExerciseControllerTest {
 
         given()
                 .spec(requestSpec)
+                .header("Authorization", "Bearer " + adminToken)
                 .body(json)
                 .when()
                 .post("/exercise")
@@ -128,6 +145,7 @@ class ExerciseControllerTest {
 
         given()
                 .spec(requestSpec)
+                .header("Authorization", "Bearer " + adminToken)
                 .body(json)
                 .when()
                 .put("/exercise/" + id)
@@ -144,6 +162,7 @@ class ExerciseControllerTest {
 
         given()
                 .spec(requestSpec)
+                .header("Authorization", "Bearer " + adminToken)
                 .when()
                 .delete("/exercise/" + id)
                 .then()
@@ -151,6 +170,7 @@ class ExerciseControllerTest {
 
         given()
                 .spec(requestSpec)
+                .header("Authorization", "Bearer " + adminToken)
                 .when()
                 .get("/exercise/" + id)
                 .then()
