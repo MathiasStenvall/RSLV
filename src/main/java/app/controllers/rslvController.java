@@ -1,8 +1,15 @@
 package app.controllers;
 
 import app.DAO.ExerciseDAO;
+import app.DAO.UserDAO;
+import app.DTO.UserRegistrationDTO;
+import app.entities.User;
+import app.exceptions.UserAlreadyExistsException;
 import app.utils.RequestCounter;
 import io.javalin.config.JavalinConfig;
+import io.javalin.http.BadRequestResponse;
+import io.javalin.http.HttpStatus;
+import io.javalin.http.InternalServerErrorResponse;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -13,26 +20,59 @@ import java.util.concurrent.Future;
 public class rslvController {
 
     private final JavalinConfig config;
-    private final ExerciseDAO dao;
+    private final UserDAO userDAO;
+    private final ExerciseDAO exerciseDAO;
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
 
-    public rslvController(JavalinConfig config, ExerciseDAO dao) {
+    public rslvController(JavalinConfig config, UserDAO userDAO, ExerciseDAO exerciseDAO) {
         this.config = config;
-        this.dao = dao;
+        this.userDAO = userDAO;
+        this.exerciseDAO = exerciseDAO;
     }
 
     public void addRoutes() {
         config.routes.before(ctx -> RequestCounter.increment());
+
+        config.routes.post("/api/v1/register", ctx -> {
+            UserRegistrationDTO dto = ctx.bodyAsClass(UserRegistrationDTO.class);
+            if (dto.email() == null || dto.email().isBlank()
+                    || dto.password() == null || dto.password().isBlank()) {
+                throw new BadRequestResponse("Email and password are required.");
+            }
+
+            if (userDAO.findByEmail(dto.email()) != null) {
+                throw new UserAlreadyExistsException("User with " + dto.email() + " already exists");
+            }
+
+            User user = new User(
+                    dto.name(),
+                    dto.age(),
+                    dto.email(),
+                    dto.password(),
+                    dto.phoneNumber(),
+                    dto.sex(),
+                    dto.height(),
+                    dto.currentWeight()
+            );
+
+            if (!userDAO.save(user)) {
+                throw new InternalServerErrorResponse("Registration failed.");
+            }
+
+            ctx.status(HttpStatus.CREATED);
+            ctx.json(Map.of("message", "User registered succesfully!"));
+
+        });
 
         config.routes.get("/api/v1/counter", ctx -> ctx.result("This API has received "
                 + RequestCounter.getCounter() + " requests since its last reset (including this one!)."));
 
         config.routes.get("/api/v1/stats", ctx -> {
             try {
-                Future<Long> exerciseAmount = executor.submit(dao::getExerciseAmount);
-                Future<Long> equipmentAmount = executor.submit(dao::getEquipmentAmount);
-                Future<Long> bodyPartAmount = executor.submit(dao::getBodyPartAmount);
-                Future<Long> targetMuscleAmount = executor.submit(dao::getTargetMuscleAmount);
+                Future<Long> exerciseAmount = executor.submit(exerciseDAO::getExerciseAmount);
+                Future<Long> equipmentAmount = executor.submit(exerciseDAO::getEquipmentAmount);
+                Future<Long> bodyPartAmount = executor.submit(exerciseDAO::getBodyPartAmount);
+                Future<Long> targetMuscleAmount = executor.submit(exerciseDAO::getTargetMuscleAmount);
 
                 long exercises = exerciseAmount.get();
                 long equipment = equipmentAmount.get();
@@ -45,10 +85,10 @@ public class rslvController {
                         "bodyParts", bodyParts,
                         "targetMuscles", targetMuscle
                 ));
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException("Could not retrieve data from database.", e);
-            } catch (ExecutionException e){
+            } catch (ExecutionException e) {
                 throw new RuntimeException("Could not retrieve data from database.", e);
             }
         });

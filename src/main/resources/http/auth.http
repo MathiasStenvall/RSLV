@@ -1,0 +1,14 @@
+### Register a new User (first run successfull, rest fails)
+POST http://localhost:7070/api/v1/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "age": 25,
+  "email": "test@testing.com",
+  "password": "test123",
+  "phoneNumber": "12345678",
+  "sex": "male",
+  "height": 176,
+  "currentWeight": 86.3
+}
