@@ -8,7 +8,7 @@ import app.entities.User;
 import app.exceptions.UserAlreadyExistsException;
 import app.service.JWTService;
 import app.utils.RequestCounter;
-import app.utils.Validator;
+import app.service.Validator;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.HttpStatus;

@@ -8,7 +8,7 @@ import app.exceptions.ExceptionMapper;
 import app.service.JWTAuthenticator;
 import app.service.JWTService;
 import app.utils.Utils;
-import app.utils.Validator;
+import app.service.Validator;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
 

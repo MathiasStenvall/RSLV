@@ -1,4 +1,4 @@
-package app.utils;
+package app.service;
 
 import app.entities.Exercise;
 import app.enums.BodyParts;

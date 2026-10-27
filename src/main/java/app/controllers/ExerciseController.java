@@ -4,7 +4,7 @@ import app.DAO.ExerciseDAO;
 import app.entities.Exercise;
 import app.enums.Role;
 import app.service.JWTAuthenticator;
-import app.utils.Validator;
+import app.service.Validator;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.HttpStatus;
