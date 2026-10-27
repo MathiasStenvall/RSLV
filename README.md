@@ -2,10 +2,8 @@
 
 ## Vision
 
-Briefly describe the purpose of your project in 1–2 sentences.
-
 > This project is a backend API containing fitness exercises.
-> Every exercise contains information about it, gif on how it is performed and instructions on how it is performed.
+> Every exercise contains information about it, a gif on how it is performed and instructions on how it is performed.
 > The goal is to provide enough data for a beginner to understand and execute without risk of injury.
 
 ---
