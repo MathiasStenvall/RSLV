@@ -1,26 +1,25 @@
-# Project Name
+# RSLV
 
 ## Vision
 
 Briefly describe the purpose of your project in 1–2 sentences.
 
-Example:
-
-> This project is a backend API for managing fitness activities.  
-> The system allows users to track workouts, store exercise history, and analyse progress over time.
+> This project is a backend API containing fitness exercises.
+> Every exercise contains information about it, gif on how it is performed and instructions on how it is performed.
+> The goal is to provide enough data for a beginner to understand and execute without risk of injury.
 
 ---
 
 ## Links
 
 Deployed application (optional):  
-<LINK>
+https://rslv.mstenvall.dk/api/v1
 
 Source code repository:  
-<LINK>
+https://github.com/MathiasStenvall/RSLV/tree/main/src
 
 Portfolio website:  
-<LINK>
+https://mathiasstenvall.github.io/portfolio/
 
 ---
 
@@ -35,8 +34,8 @@ Example:
 This project is built as a layered backend architecture using:
 
 - Controller layer (REST endpoints)
-- Service layer (business logic)
-- Repository layer (database access)
+- Service layer (business logic and Validation)
+- DAO layer (database access)
 
 Technologies used:
 
