@@ -68,7 +68,7 @@ public class rslvController {
             }
 
             ctx.status(HttpStatus.CREATED);
-            ctx.json(Map.of("message", "User registered succesfully!"));
+            ctx.json(Map.of("message", "User registered successfully!"));
         });
 
         config.routes.post("/api/v1/login", ctx -> {
