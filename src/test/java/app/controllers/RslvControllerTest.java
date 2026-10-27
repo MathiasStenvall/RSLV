@@ -5,7 +5,7 @@ import app.DTO.UserRegistrationDTO;
 import app.config.ServerConfig;
 import app.config.hibernate.HibernateConfig;
 import app.testutils.RslvControllerTestPopulator;
-import com.nimbusds.jose.JOSEException;
+
 import io.javalin.Javalin;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;

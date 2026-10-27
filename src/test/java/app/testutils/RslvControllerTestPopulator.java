@@ -5,9 +5,6 @@ import app.enums.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RslvControllerTestPopulator {
 
     public static void populate (EntityManagerFactory emf){
