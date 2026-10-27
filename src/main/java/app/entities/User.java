@@ -7,7 +7,6 @@ import lombok.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
