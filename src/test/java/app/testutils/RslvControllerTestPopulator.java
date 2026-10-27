@@ -10,9 +10,7 @@ import java.util.List;
 
 public class RslvControllerTestPopulator {
 
-    public static List<Integer> populate (EntityManagerFactory emf){
-
-        List<Integer> ids = new ArrayList<>();
+    public static void populate (EntityManagerFactory emf){
 
         try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
@@ -34,8 +32,6 @@ public class RslvControllerTestPopulator {
             );
 
             em.persist(u1);
-            int id1 = u1.getId();
-            ids.add(id1);
 
             User u2 = new User(
                     "Test002",
@@ -51,12 +47,9 @@ public class RslvControllerTestPopulator {
             u2.setRole(Role.ADMIN);
 
             em.persist(u2);
-            int id2 = u2.getId();
-            ids.add(id2);
 
             em.getTransaction().commit();
 
-            return ids;
         }
 
     }

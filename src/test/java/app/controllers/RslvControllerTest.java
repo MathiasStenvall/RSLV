@@ -17,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Base64;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -27,11 +26,10 @@ class RslvControllerTest {
     private static EntityManagerFactory emf;
     private static Javalin app;
     private static RequestSpecification requestSpec;
-    private List<Integer> ids;
     private static final String TEST_SECRET = Base64.getEncoder().encodeToString(new byte[32]);
 
     @BeforeAll
-    static void startServer() throws JOSEException {
+    static void startServer() {
         emf = HibernateConfig.getEntityManagerFactoryForTest();
         app = ServerConfig.startServer(0, emf, TEST_SECRET);
 
@@ -46,7 +44,7 @@ class RslvControllerTest {
 
     @BeforeEach
     void populateDB() {
-        ids = RslvControllerTestPopulator.populate(emf);
+        RslvControllerTestPopulator.populate(emf);
     }
 
     @AfterAll
