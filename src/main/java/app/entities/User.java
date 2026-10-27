@@ -48,12 +48,6 @@ public class User {
 
     private LocalDate signupDate;
 
-    @OneToMany(mappedBy = "user")
-    private List<WorkoutExercise> workoutExercises;
-
-    @OneToMany(mappedBy = "user")
-    private List<Split> splits;
-
     public User(String name, int age, String email,
                 String password, String phoneNumber, String sex, int height,
                 double currentWeight) {
