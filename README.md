@@ -3,7 +3,8 @@
 ## Vision
 
 This project is a backend API containing fitness exercises.
-Every exercise contains information about it, a GIF on how it is performed and instructions on how it is performed.
+Every exercise contains information about it, a GIF and instructions on how it is performed.
+
 The goal is to provide enough data for a beginner to understand and execute exercises while minimizing risk of injury.
 
 ---
@@ -165,13 +166,19 @@ The main user stories for this project are:
 
 # Development Notes
 
-(Optional section)
+This project has introduced a lot of new concepts, and has turned out to be a big and enjoyable learning experience.
+However, some concepts were more challenging than others, such as:
 
-Here you can briefly describe important challenges or lessons learned during development.
+**JPA:**
+Correctly implementing every relationship and annotations to make the class fit my exact needs,
+didn't only require time, but I also had to come back several times to adjust while developing the project.
 
-Examples:
+**CI/CD:**
+Setting up the pipeline was a long process, it contained steps I hadn't worked with before, and since I wasn't familiar with them,
+I didn't feel confident. Also, it requires several steps, which only gives more room for mistakes.
 
-- Handling authentication with JWT
-- Designing the database schema
-- Structuring the service layer
-- Testing the API
+**JWT:**
+Implementing JWT was a challenge, again it is divided into several steps, and while I understood the process,
+there was a lot of new syntax.
+
+That being said, overcoming these challenges has positively affected my confidence on how to approach and execute these new technologies.
