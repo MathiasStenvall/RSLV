@@ -2,9 +2,9 @@
 
 ## Vision
 
-> This project is a backend API containing fitness exercises.
-> Every exercise contains information about it, a gif on how it is performed and instructions on how it is performed.
-> The goal is to provide enough data for a beginner to understand and execute without risk of injury.
+This project is a backend API containing fitness exercises.
+Every exercise contains information about it, a gif on how it is performed and instructions on how it is performed.
+The goal is to provide enough data for a beginner to understand and execute exercises while minimizing risk of injury.
 
 ---
 
@@ -25,14 +25,10 @@ https://mathiasstenvall.github.io/portfolio/
 
 ## System Overview
 
-Describe the overall structure of the system.
-
-Example:
-
-This project is built as a layered backend architecture using:
+This project's structure is divided into several layers, each having a single clear purpose:
 
 - Controller layer (REST endpoints)
-- Service layer (business logic and Validation)
+- Service layer (security, services and validation)
 - DAO layer (database access)
 
 Technologies used:
@@ -43,39 +39,51 @@ Technologies used:
 - PostgreSQL
 - Maven
 - JWT authentication
+- Lombok
+- JUnit
+- Hamcrest
+- REST-assured
+- Jackson
+- SLF4J
+- BCrypt
 
 ---
 
 ## Architecture Diagram
 
-(Optional but recommended)
+The overall flow of this project goes as follows:
 
-You can include a simple diagram showing the main components.
-
-Example:
-client - rest controller - service - repository - database
-
-Or include an image if you created a diagram.
+A client sends a request to an endpoint, which the corresponding controller handles. Depending on the endpoint, the request will be validated and will require JWT authentication and role authorization.
+If the validations pass, the controller uses the corresponding DAO class to access the database and perform the desired operation. 
+The client then receives an HTTP response, which contains the result message or an error message.
 
 ---
 
 ## Key Design Decisions
 
-Describe important technical decisions you made.
+While decisions of all sizes were made under the development, some of the key decisions include:
 
-Examples:
+**Structure**
+Classes are separated by responsibility.
+This improves modularity and maintainability, and gives a better overview of the project.
 
-- Why you chose your project structure
-- How authentication works
-- How errors are handled
-- Why you chose specific libraries or frameworks
+**Database**
+Exercise information is sometimes shared, and I didn't want to flood my database tables with duplicates.
+For this reason my exercise class has several ManyToMany relations. This keeps the tables clean, at the cost of having more tables (connecting tables).
 
-Example:
+**Security**
+Authentication is implemented with JWT tokens, and authorization is based on the user's role.
+Whenever a user logs in, they receive a time-limited token based on their role. If they have a valid token with the required permissions, they can access endpoints that modify data.
 
-**Authentication**
+**Exceptions**
+Exceptions are handled with an exception mapper.
+This class contains the most thrown errors, alongside a catch-all for unexpected exceptions.
+Each exception is logged, and an error message is returned to the client.
 
-Authentication is implemented using JWT tokens.  
-Users log in and receive a token which must be included in subsequent API requests.
+**Test**
+Tests are covered with an HTTP request file, JUnit and REST-assured.
+These tests verify expected behaviour, and run automatically in the CI/CD pipeline.
+In order to completely separate my tests classes from my deployed project, they use their own "EntityManagerFactory" and "secret".
 
 ---
 
@@ -102,7 +110,7 @@ You may include:
 
 ## Important Entities
 
-Briefly describe the main entities in your system.
+The two main classes in this project are:
 
 ### User
 
@@ -111,20 +119,32 @@ Represents a registered user in the system.
 Fields:
 
 - id
-- username
-- password
+- name
+- age
 - role
+- email
+- password
+- phoneNumber
+- sex
+- height
+- currentWeight
+- signupDate
 
-### Activity
+### Exercise
 
-Represents a recorded workout activity.
+Represents an exercise in the system.
 
 Fields:
 
 - id
-- userId
-- date
-- description
+- exerciseId
+- name
+- gifUrl
+- bodyParts
+- targetMuscles
+- secondaryMuscles
+- equipments
+- instructions
 
 ---
 
@@ -138,14 +158,15 @@ Describe the most important endpoints.
 
 # User Stories
 
-List the most important user stories for the project.
-
-Example:
+The main user stories for this project are:
 
 - As a user, I want to register an account.
 - As a user, I want to log in and receive a token.
-- As a user, I want to record a workout activity.
-- As a user, I want to view my activity history.
+- As a user, I want browse exercises with an id-based pagination.
+- As a user, I want to search a specific exercise by id.
+- As an admin, I want to add a new exercise to the database.
+- As an admin, I want to change an existing exercise.
+- As an admin, I want to delete an existing exercise from the database.
 
 ---
 
