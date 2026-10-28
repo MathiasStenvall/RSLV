@@ -2,8 +2,8 @@
 
 | Method | URL                          | Request Body (JSON) | Response (JSON)  | Error (e)                                                            |
 |:-------|:-----------------------------|:--------------------|:-----------------|:---------------------------------------------------------------------|
-| POST   | /api/v1/register             | User                | Success message  | 400: Bad Request, 409: UserAlreadyExists, 500: Internal Server error |
-| POST   | /api/v1/login                | User                | JWT              | 400: Bad Request, 401: Unauthorized                                  |
+| POST   | /api/v1/register             | User without id     | Success message  | 400: Bad Request, 409: UserAlreadyExists, 500: Internal Server error |
+| POST   | /api/v1/login                | User without id     | JWT              | 400: Bad Request, 401: Unauthorized                                  |
 | GET    | /api/v1/counter              |                     | requests counter |                                                                      |
 | GET    | /api/v1/stats                |                     | API statistics   | 500: Internal Server Error                                           |
 | GET    | /api/v1/exercise/{id}        |                     | Exercise as JSON | 400: Bad Request, 404: Not Found                                     |

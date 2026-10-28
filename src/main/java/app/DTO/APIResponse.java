@@ -1,6 +1,5 @@
 package app.DTO;
 
-import app.entities.Meta;
 import lombok.Data;
 
 import java.util.List;

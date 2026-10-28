@@ -3,7 +3,7 @@
 ## Vision
 
 This project is a backend API containing fitness exercises.
-Every exercise contains information about it, a gif on how it is performed and instructions on how it is performed.
+Every exercise contains information about it, a GIF on how it is performed and instructions on how it is performed.
 The goal is to provide enough data for a beginner to understand and execute exercises while minimizing risk of injury.
 
 ---
@@ -45,7 +45,7 @@ Technologies used:
 - REST-assured
 - Jackson
 - SLF4J
-- BCrypt
+- Bcrypt
 
 ---
 
@@ -82,7 +82,7 @@ Each exception is logged, and an error message is returned to the client.
 
 **Test:**
 Tests are covered with an HTTP request file, JUnit and REST-assured.
-These tests verify expected behaviour, and run automatically in the CI/CD pipeline.
+These tests verify expected behavior, and run automatically in the CI/CD pipeline.
 In order to completely separate my tests classes from my deployed project, they use their own "EntityManagerFactory" and "secret".
 
 ---
@@ -91,20 +91,7 @@ In order to completely separate my tests classes from my deployed project, they 
 
 ## ERD
 
-Insert your Entity Relationship Diagram here.
-
-Example entities:
-
-- User
-- Activity
-- Workout
-- Exercise
-
-You may include:
-
-- an image
-- a link to a diagram
-- or a textual explanation
+![RSLV_API.png](src/main/resources/public/images/RSLV_API.png)
 
 ---
 
@@ -152,8 +139,8 @@ Fields:
 
 | Method | URL                          | Request Body (JSON) | Response (JSON)  | Error (e)                                                            |
 |:-------|:-----------------------------|:--------------------|:-----------------|:---------------------------------------------------------------------|
-| POST   | /api/v1/register             | User                | Success message  | 400: Bad Request, 409: UserAlreadyExists, 500: Internal Server error |
-| POST   | /api/v1/login                | User                | JWT              | 400: Bad Request, 401: Unauthorized                                  |
+| POST   | /api/v1/register             | User without id     | Success message  | 400: Bad Request, 409: UserAlreadyExists, 500: Internal Server error |
+| POST   | /api/v1/login                | User without id     | JWT              | 400: Bad Request, 401: Unauthorized                                  |
 | GET    | /api/v1/counter              |                     | requests counter |                                                                      |
 | GET    | /api/v1/stats                |                     | API statistics   | 500: Internal Server Error                                           |
 | GET    | /api/v1/exercise/{id}        |                     | Exercise as JSON | 400: Bad Request, 404: Not Found                                     |
