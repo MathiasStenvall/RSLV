@@ -63,24 +63,24 @@ The client then receives an HTTP response, which contains the result message or 
 
 While decisions of all sizes were made under the development, some of the key decisions include:
 
-**Structure**
+**Structure:**
 Classes are separated by responsibility.
 This improves modularity and maintainability, and gives a better overview of the project.
 
-**Database**
+**Database:**
 Exercise information is sometimes shared, and I didn't want to flood my database tables with duplicates.
 For this reason my exercise class has several ManyToMany relations. This keeps the tables clean, at the cost of having more tables (connecting tables).
 
-**Security**
+**Security:**
 Authentication is implemented with JWT tokens, and authorization is based on the user's role.
 Whenever a user logs in, they receive a time-limited token based on their role. If they have a valid token with the required permissions, they can access endpoints that modify data.
 
-**Exceptions**
+**Exceptions:**
 Exceptions are handled with an exception mapper.
 This class contains the most thrown errors, alongside a catch-all for unexpected exceptions.
 Each exception is logged, and an error message is returned to the client.
 
-**Test**
+**Test:**
 Tests are covered with an HTTP request file, JUnit and REST-assured.
 These tests verify expected behaviour, and run automatically in the CI/CD pipeline.
 In order to completely separate my tests classes from my deployed project, they use their own "EntityManagerFactory" and "secret".
@@ -150,11 +150,17 @@ Fields:
 
 # API Documentation
 
-Describe the most important endpoints.
-
-## Example Endpoints
-
-### Create User
+| Method | URL                          | Request Body (JSON) | Response (JSON)  | Error (e)                                                            |
+|:-------|:-----------------------------|:--------------------|:-----------------|:---------------------------------------------------------------------|
+| POST   | /api/v1/register             | User                | Success message  | 400: Bad Request, 409: UserAlreadyExists, 500: Internal Server error |
+| POST   | /api/v1/login                | User                | JWT              | 400: Bad Request, 401: Unauthorized                                  |
+| GET    | /api/v1/counter              |                     | requests counter |                                                                      |
+| GET    | /api/v1/stats                |                     | API statistics   | 500: Internal Server Error                                           |
+| GET    | /api/v1/exercise/{id}        |                     | Exercise as JSON | 400: Bad Request, 404: Not Found                                     |
+| GET    | /api/v1/exercise?page={page} |                     | Exercise[20]     | 400: Bad Request                                                     |
+| POST   | /api/v1/exercise             | Exercise without id | Exercise as JSON | 400: Bad Request, 403: Forbidden                                     |
+| PUT    | /api/v1/exercise/{id}        | Exercise without id | Exercise as JSON | 400: Bad Request, 403: Forbidden, 404: Not Found                     |
+| DELETE | /api/v1/exercise/{id}        |                     |                  | 400: Bad Request, 403: Forbidden, 404: Not Found                     |
 
 # User Stories
 
