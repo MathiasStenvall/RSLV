@@ -169,6 +169,13 @@ The main user stories for this project are:
 This project has introduced a lot of new concepts, and has turned out to be a big and enjoyable learning experience.
 However, some concepts were more challenging than others, such as:
 
+**Cursor-based pagination:**
+When fetching data from an external API, I was fetching 1500 exercises, so I thought it would be a great opportunity to 
+use threads to accelerate that process. However, I ended up dropping that idea due to that API using cursor-based pagination (instead of id-based)
+, meaning that you need to know the previous page's cursor, in order to access the next page, this meant that I couldn't have
+independent threads fetching on their own, because they would need to wait for the previous one to finish, defeating the purpose of using threads.
+The idea of using threads to fetch data from the external API was dropped, and used elsewhere.
+
 **JPA:**
 Correctly implementing every relationship and annotations to make the class fit my exact needs,
 didn't only require time, but I also had to come back several times to adjust while developing the project.
